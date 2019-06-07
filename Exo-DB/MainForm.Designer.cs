@@ -67,6 +67,8 @@
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.statusStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.kryptonPanel)).BeginInit();
 			this.kryptonPanel.SuspendLayout();
@@ -289,7 +291,6 @@
 			// 
 			// toolStrip
 			// 
-			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonLoadInternalDatabase,
@@ -301,7 +302,8 @@
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Size = new System.Drawing.Size(110, 25);
 			this.toolStrip.TabIndex = 1;
-			this.toolStrip.Text = "toolStrip1";
+			this.toolStrip.TabStop = true;
+			this.toolStrip.Text = "toolStrip";
 			// 
 			// toolStripButtonLoadInternalDatabase
 			// 
@@ -363,7 +365,7 @@
 			// 
 			// menuStrip
 			// 
-			this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
+			this.menuStrip.AllowItemReorder = true;
 			this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.menuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -371,8 +373,10 @@
             this.toolStripMenuItemHelp});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
+			this.menuStrip.ShowItemToolTips = true;
 			this.menuStrip.Size = new System.Drawing.Size(784, 24);
 			this.menuStrip.TabIndex = 0;
+			this.menuStrip.TabStop = true;
 			this.menuStrip.Text = "menuStrip1";
 			// 
 			// toolStripMenuItemFile
@@ -566,6 +570,19 @@
 			this.toolStripContainer2.TopToolStripPanel.Controls.Add(this.menuStrip);
 			this.toolStripContainer2.TopToolStripPanel.Controls.Add(this.toolStrip);
 			// 
+			// openFileDialog
+			// 
+			this.openFileDialog.DefaultExt = "*.csv";
+			this.openFileDialog.Filter = "CSV-Dateien|*.csv|Textdateien|*.txt|Alle Dateien|*,*";
+			this.openFileDialog.SupportMultiDottedExtensions = true;
+			// 
+			// saveFileDialog
+			// 
+			this.saveFileDialog.CheckFileExists = true;
+			this.saveFileDialog.DefaultExt = "*.csv";
+			this.saveFileDialog.Filter = "CSV-Dateien|*.csv|Textdateien|*.txt|Alle Dateien|*,*";
+			this.saveFileDialog.SupportMultiDottedExtensions = true;
+			// 
 			// MainForm
 			// 
 			this.AllowButtonSpecToolTips = true;
@@ -647,6 +664,8 @@
 		private System.Windows.Forms.ToolStripButton toolStripButtonLoadOnlineDatabase;
 		private System.Windows.Forms.ToolStripButton toolStripButtonLoadExternalDatabase;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+		private System.Windows.Forms.OpenFileDialog openFileDialog;
+		private System.Windows.Forms.SaveFileDialog saveFileDialog;
 	}
 }
 
