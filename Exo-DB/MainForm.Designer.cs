@@ -46,13 +46,24 @@
 			this.kryptonButtonLoadExternalDatabase = new ComponentFactory.Krypton.Toolkit.KryptonButton();
 			this.kryptonButtonSaveOnlineDatabase = new ComponentFactory.Krypton.Toolkit.KryptonButton();
 			this.toolStrip = new System.Windows.Forms.ToolStrip();
+			this.toolStripButtonLoadInternalDatabase = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButtonLoadOnlineDatabase = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButtonLoadExternalDatabase = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripButtonInformation = new System.Windows.Forms.ToolStripButton();
 			this.menuStrip = new System.Windows.Forms.MenuStrip();
 			this.toolStripMenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemLoadDatabase = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemLoadInternalDatabase = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemLoadOnlineDatabase = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemLoadExternalDatabase = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItemInfo = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemInformation = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripMenuItemOpenHomepage = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemOpenGithub = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -75,6 +86,7 @@
 			// 
 			// statusStrip
 			// 
+			this.statusStrip.AllowItemReorder = true;
 			this.statusStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.statusStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -82,15 +94,18 @@
 			this.statusStrip.Location = new System.Drawing.Point(0, 0);
 			this.statusStrip.Name = "statusStrip";
 			this.statusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
+			this.statusStrip.ShowItemToolTips = true;
 			this.statusStrip.Size = new System.Drawing.Size(784, 22);
+			this.statusStrip.SizingGrip = false;
 			this.statusStrip.TabIndex = 0;
 			this.statusStrip.Text = "statusStrip";
 			// 
 			// toolStripStatusLabel
 			// 
 			this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-			this.toolStripStatusLabel.Size = new System.Drawing.Size(70, 17);
-			this.toolStripStatusLabel.Text = "information";
+			this.toolStripStatusLabel.Size = new System.Drawing.Size(157, 17);
+			this.toolStripStatusLabel.Text = "Hier stehen einige Hilfstexte.";
+			this.toolStripStatusLabel.ToolTipText = "What da fuck?!";
 			// 
 			// kryptonPanel
 			// 
@@ -168,6 +183,7 @@
 			this.progressBarLoadingDatabase.Size = new System.Drawing.Size(776, 14);
 			this.progressBarLoadingDatabase.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
 			this.progressBarLoadingDatabase.TabIndex = 5;
+			this.toolTip.SetToolTip(this.progressBarLoadingDatabase, "Ladestatus...");
 			// 
 			// kryptonButtonSaveInternalDatabase
 			// 
@@ -196,7 +212,8 @@
 			this.kryptonWrapLabelStatusOfProgressingDatabase.Location = new System.Drawing.Point(3, 304);
 			this.kryptonWrapLabelStatusOfProgressingDatabase.Name = "kryptonWrapLabelStatusOfProgressingDatabase";
 			this.kryptonWrapLabelStatusOfProgressingDatabase.Size = new System.Drawing.Size(776, 20);
-			this.kryptonWrapLabelStatusOfProgressingDatabase.Text = "Show status of progressing database";
+			this.kryptonWrapLabelStatusOfProgressingDatabase.Text = "Hier werden einige Statustexte für das Laden der Datenbank angezeigt.";
+			this.toolTip.SetToolTip(this.kryptonWrapLabelStatusOfProgressingDatabase, "Hier werden einige Statustexte für das Laden der Datenbank angezeigt.");
 			// 
 			// kryptonButtonLoadOnlineDatabase
 			// 
@@ -275,22 +292,74 @@
 			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonLoadInternalDatabase,
+            this.toolStripButtonLoadOnlineDatabase,
+            this.toolStripButtonLoadExternalDatabase,
+            this.toolStripSeparator3,
             this.toolStripButtonInformation});
 			this.toolStrip.Location = new System.Drawing.Point(3, 24);
 			this.toolStrip.Name = "toolStrip";
-			this.toolStrip.Size = new System.Drawing.Size(35, 25);
+			this.toolStrip.Size = new System.Drawing.Size(110, 25);
 			this.toolStrip.TabIndex = 1;
 			this.toolStrip.Text = "toolStrip1";
 			// 
+			// toolStripButtonLoadInternalDatabase
+			// 
+			this.toolStripButtonLoadInternalDatabase.AccessibleDescription = "Lädt die interne Datenbank";
+			this.toolStripButtonLoadInternalDatabase.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButtonLoadInternalDatabase.Image = global::EXO_DB.Properties.Resources.database;
+			this.toolStripButtonLoadInternalDatabase.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButtonLoadInternalDatabase.Name = "toolStripButtonLoadInternalDatabase";
+			this.toolStripButtonLoadInternalDatabase.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButtonLoadInternalDatabase.Text = "Interne Datenbank laden";
+			this.toolStripButtonLoadInternalDatabase.Click += new System.EventHandler(this.ToolStripButtonLoadInternalDatabase_Click);
+			this.toolStripButtonLoadInternalDatabase.MouseEnter += new System.EventHandler(this.ToolStripButtonLoadInternalDatabase_MouseEnter);
+			this.toolStripButtonLoadInternalDatabase.MouseLeave += new System.EventHandler(this.ToolStripButtonLoadInternalDatabase_MouseLeave);
+			// 
+			// toolStripButtonLoadOnlineDatabase
+			// 
+			this.toolStripButtonLoadOnlineDatabase.AccessibleDescription = "Lädt die Online-Datenbank";
+			this.toolStripButtonLoadOnlineDatabase.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButtonLoadOnlineDatabase.Image = global::EXO_DB.Properties.Resources.database_lightning;
+			this.toolStripButtonLoadOnlineDatabase.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButtonLoadOnlineDatabase.Name = "toolStripButtonLoadOnlineDatabase";
+			this.toolStripButtonLoadOnlineDatabase.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButtonLoadOnlineDatabase.Text = "Online-Datenbank laden";
+			this.toolStripButtonLoadOnlineDatabase.Click += new System.EventHandler(this.ToolStripButtonLoadOnlineDatabase_Click);
+			this.toolStripButtonLoadOnlineDatabase.MouseEnter += new System.EventHandler(this.ToolStripButtonLoadOnlineDatabase_MouseEnter);
+			this.toolStripButtonLoadOnlineDatabase.MouseLeave += new System.EventHandler(this.ToolStripButtonLoadOnlineDatabase_MouseLeave);
+			// 
+			// toolStripButtonLoadExternalDatabase
+			// 
+			this.toolStripButtonLoadExternalDatabase.AccessibleDescription = "Lädt die externe Datenbank";
+			this.toolStripButtonLoadExternalDatabase.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButtonLoadExternalDatabase.Image = global::EXO_DB.Properties.Resources.database_go;
+			this.toolStripButtonLoadExternalDatabase.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButtonLoadExternalDatabase.Name = "toolStripButtonLoadExternalDatabase";
+			this.toolStripButtonLoadExternalDatabase.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButtonLoadExternalDatabase.Text = "Externe Datenbank laden";
+			this.toolStripButtonLoadExternalDatabase.Click += new System.EventHandler(this.ToolStripButtonLoadExternalDatabase_Click);
+			this.toolStripButtonLoadExternalDatabase.MouseEnter += new System.EventHandler(this.ToolStripButtonLoadExternalDatabase_MouseEnter);
+			this.toolStripButtonLoadExternalDatabase.MouseLeave += new System.EventHandler(this.ToolStripButtonLoadExternalDatabase_MouseLeave);
+			// 
+			// toolStripSeparator3
+			// 
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+			// 
 			// toolStripButtonInformation
 			// 
+			this.toolStripButtonInformation.AccessibleDescription = "Zeigt die Programminformationen zu EXO-DB3 an";
 			this.toolStripButtonInformation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.toolStripButtonInformation.Image = global::EXO_DB.Properties.Resources.information;
 			this.toolStripButtonInformation.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButtonInformation.Name = "toolStripButtonInformation";
 			this.toolStripButtonInformation.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButtonInformation.Text = "toolStripButton1";
+			this.toolStripButtonInformation.Text = "Info über EXO-DB3";
+			this.toolStripButtonInformation.ToolTipText = "Info über EXO-DB3";
 			this.toolStripButtonInformation.Click += new System.EventHandler(this.ToolStripButtonInformation_Click);
+			this.toolStripButtonInformation.MouseEnter += new System.EventHandler(this.ToolStripButtonInformation_MouseEnter);
+			this.toolStripButtonInformation.MouseLeave += new System.EventHandler(this.ToolStripButtonInformation_MouseLeave);
 			// 
 			// menuStrip
 			// 
@@ -308,41 +377,156 @@
 			// 
 			// toolStripMenuItemFile
 			// 
+			this.toolStripMenuItemFile.AccessibleDescription = "Öffnet die Datei-Einträge";
 			this.toolStripMenuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemLoadDatabase,
             this.toolStripSeparator1,
             this.toolStripMenuItemExit});
 			this.toolStripMenuItemFile.Name = "toolStripMenuItemFile";
-			this.toolStripMenuItemFile.Size = new System.Drawing.Size(37, 20);
-			this.toolStripMenuItemFile.Text = "&File";
+			this.toolStripMenuItemFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+			this.toolStripMenuItemFile.Size = new System.Drawing.Size(46, 20);
+			this.toolStripMenuItemFile.Text = "&Datei";
+			this.toolStripMenuItemFile.MouseEnter += new System.EventHandler(this.ToolStripMenuItemFile_MouseEnter);
+			this.toolStripMenuItemFile.MouseLeave += new System.EventHandler(this.ToolStripMenuItemFile_MouseLeave);
+			// 
+			// toolStripMenuItemLoadDatabase
+			// 
+			this.toolStripMenuItemLoadDatabase.AccessibleDescription = "Lädt die Datenbank";
+			this.toolStripMenuItemLoadDatabase.AutoToolTip = true;
+			this.toolStripMenuItemLoadDatabase.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemLoadInternalDatabase,
+            this.toolStripMenuItemLoadOnlineDatabase,
+            this.toolStripMenuItemLoadExternalDatabase});
+			this.toolStripMenuItemLoadDatabase.Image = global::EXO_DB.Properties.Resources.database;
+			this.toolStripMenuItemLoadDatabase.Name = "toolStripMenuItemLoadDatabase";
+			this.toolStripMenuItemLoadDatabase.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+			this.toolStripMenuItemLoadDatabase.Size = new System.Drawing.Size(207, 22);
+			this.toolStripMenuItemLoadDatabase.Text = "&Datenbank laden";
+			this.toolStripMenuItemLoadDatabase.ToolTipText = "Datenbank laden";
+			this.toolStripMenuItemLoadDatabase.MouseEnter += new System.EventHandler(this.ToolStripMenuItemLoadDatabase_MouseEnter);
+			this.toolStripMenuItemLoadDatabase.MouseLeave += new System.EventHandler(this.ToolStripMenuItemLoadDatabase_MouseLeave);
+			// 
+			// toolStripMenuItemLoadInternalDatabase
+			// 
+			this.toolStripMenuItemLoadInternalDatabase.AccessibleDescription = "Lädt die interne Datenbank";
+			this.toolStripMenuItemLoadInternalDatabase.AutoToolTip = true;
+			this.toolStripMenuItemLoadInternalDatabase.Image = global::EXO_DB.Properties.Resources.database;
+			this.toolStripMenuItemLoadInternalDatabase.Name = "toolStripMenuItemLoadInternalDatabase";
+			this.toolStripMenuItemLoadInternalDatabase.Size = new System.Drawing.Size(204, 22);
+			this.toolStripMenuItemLoadInternalDatabase.Text = "&Interne Datenbank laden";
+			this.toolStripMenuItemLoadInternalDatabase.ToolTipText = "Interne Datenbank laden";
+			this.toolStripMenuItemLoadInternalDatabase.Click += new System.EventHandler(this.ToolStripMenuItemLoadInternalDatabase_Click);
+			this.toolStripMenuItemLoadInternalDatabase.MouseEnter += new System.EventHandler(this.ToolStripMenuItemLoadInternalDatabase_MouseEnter);
+			this.toolStripMenuItemLoadInternalDatabase.MouseLeave += new System.EventHandler(this.ToolStripMenuItemLoadInternalDatabase_MouseLeave);
+			// 
+			// toolStripMenuItemLoadOnlineDatabase
+			// 
+			this.toolStripMenuItemLoadOnlineDatabase.AccessibleDescription = "Lädt die Online-Datenbank";
+			this.toolStripMenuItemLoadOnlineDatabase.AutoToolTip = true;
+			this.toolStripMenuItemLoadOnlineDatabase.Image = global::EXO_DB.Properties.Resources.database_lightning;
+			this.toolStripMenuItemLoadOnlineDatabase.Name = "toolStripMenuItemLoadOnlineDatabase";
+			this.toolStripMenuItemLoadOnlineDatabase.Size = new System.Drawing.Size(204, 22);
+			this.toolStripMenuItemLoadOnlineDatabase.Text = "&Online-Datenbank laden";
+			this.toolStripMenuItemLoadOnlineDatabase.ToolTipText = "Online-Datenbank laden";
+			this.toolStripMenuItemLoadOnlineDatabase.Click += new System.EventHandler(this.ToolStripMenuItemLoadOnlineDatabase_Click);
+			this.toolStripMenuItemLoadOnlineDatabase.MouseEnter += new System.EventHandler(this.ToolStripMenuItemLoadOnlineDatabase_MouseEnter);
+			this.toolStripMenuItemLoadOnlineDatabase.MouseLeave += new System.EventHandler(this.ToolStripMenuItemLoadOnlineDatabase_MouseLeave);
+			// 
+			// toolStripMenuItemLoadExternalDatabase
+			// 
+			this.toolStripMenuItemLoadExternalDatabase.AccessibleDescription = "Lädt die externe Datenbank";
+			this.toolStripMenuItemLoadExternalDatabase.AutoToolTip = true;
+			this.toolStripMenuItemLoadExternalDatabase.Image = global::EXO_DB.Properties.Resources.database_go;
+			this.toolStripMenuItemLoadExternalDatabase.Name = "toolStripMenuItemLoadExternalDatabase";
+			this.toolStripMenuItemLoadExternalDatabase.Size = new System.Drawing.Size(204, 22);
+			this.toolStripMenuItemLoadExternalDatabase.Text = "&Externe Datenbank laden";
+			this.toolStripMenuItemLoadExternalDatabase.ToolTipText = "Externe Datenbank laden";
+			this.toolStripMenuItemLoadExternalDatabase.Click += new System.EventHandler(this.ToolStripMenuItemLoadExternalDatabase_Click);
+			this.toolStripMenuItemLoadExternalDatabase.MouseEnter += new System.EventHandler(this.ToolStripMenuItemLoadExternalDatabase_MouseEnter);
+			this.toolStripMenuItemLoadExternalDatabase.MouseLeave += new System.EventHandler(this.ToolStripMenuItemLoadExternalDatabase_MouseLeave);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(89, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(204, 6);
 			// 
 			// toolStripMenuItemExit
 			// 
+			this.toolStripMenuItemExit.AccessibleDescription = "Beendet das Programm";
+			this.toolStripMenuItemExit.AutoToolTip = true;
 			this.toolStripMenuItemExit.Image = global::EXO_DB.Properties.Resources.door_in;
 			this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
-			this.toolStripMenuItemExit.Size = new System.Drawing.Size(92, 22);
-			this.toolStripMenuItemExit.Text = "E&xit";
+			this.toolStripMenuItemExit.ShortcutKeyDisplayString = "";
+			this.toolStripMenuItemExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+			this.toolStripMenuItemExit.Size = new System.Drawing.Size(207, 22);
+			this.toolStripMenuItemExit.Text = "&Beenden";
+			this.toolStripMenuItemExit.ToolTipText = "Beenden";
 			this.toolStripMenuItemExit.Click += new System.EventHandler(this.ToolStripMenuItemExit_Click);
+			this.toolStripMenuItemExit.MouseEnter += new System.EventHandler(this.ToolStripMenuItemExit_MouseEnter);
+			this.toolStripMenuItemExit.MouseLeave += new System.EventHandler(this.ToolStripMenuItemExit_MouseLeave);
 			// 
 			// toolStripMenuItemHelp
 			// 
+			this.toolStripMenuItemHelp.AccessibleDescription = "Zeigt ein paar Hilfseinträge an";
+			this.toolStripMenuItemHelp.AutoToolTip = true;
 			this.toolStripMenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemInfo});
+            this.toolStripMenuItemInformation,
+            this.toolStripSeparator2,
+            this.toolStripMenuItemOpenHomepage,
+            this.toolStripMenuItemOpenGithub});
 			this.toolStripMenuItemHelp.Name = "toolStripMenuItemHelp";
 			this.toolStripMenuItemHelp.Size = new System.Drawing.Size(44, 20);
-			this.toolStripMenuItemHelp.Text = "&Help";
+			this.toolStripMenuItemHelp.Text = "&Hilfe";
+			this.toolStripMenuItemHelp.ToolTipText = "Hilfe";
+			this.toolStripMenuItemHelp.MouseEnter += new System.EventHandler(this.ToolStripMenuItemHelp_MouseEnter);
+			this.toolStripMenuItemHelp.MouseLeave += new System.EventHandler(this.ToolStripMenuItemHelp_MouseLeave);
 			// 
-			// toolStripMenuItemInfo
+			// toolStripMenuItemInformation
 			// 
-			this.toolStripMenuItemInfo.Image = global::EXO_DB.Properties.Resources.information;
-			this.toolStripMenuItemInfo.Name = "toolStripMenuItemInfo";
-			this.toolStripMenuItemInfo.Size = new System.Drawing.Size(137, 22);
-			this.toolStripMenuItemInfo.Text = "&Information";
-			this.toolStripMenuItemInfo.Click += new System.EventHandler(this.ToolStripMenuItemInfo_Click);
+			this.toolStripMenuItemInformation.AccessibleDescription = "Zeigt die Programminformationen zu EXO-DB3 an";
+			this.toolStripMenuItemInformation.AutoToolTip = true;
+			this.toolStripMenuItemInformation.Image = global::EXO_DB.Properties.Resources.information;
+			this.toolStripMenuItemInformation.Name = "toolStripMenuItemInformation";
+			this.toolStripMenuItemInformation.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+			this.toolStripMenuItemInformation.Size = new System.Drawing.Size(222, 22);
+			this.toolStripMenuItemInformation.Text = "&Info über EXO-DB3";
+			this.toolStripMenuItemInformation.ToolTipText = "Info über EXO-DB3";
+			this.toolStripMenuItemInformation.Click += new System.EventHandler(this.ToolStripMenuItemInfo_Click);
+			this.toolStripMenuItemInformation.MouseEnter += new System.EventHandler(this.ToolStripMenuItemInformation_MouseEnter);
+			this.toolStripMenuItemInformation.MouseLeave += new System.EventHandler(this.ToolStripMenuItemInformation_MouseLeave);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(219, 6);
+			// 
+			// toolStripMenuItemOpenHomepage
+			// 
+			this.toolStripMenuItemOpenHomepage.AccessibleDescription = "Öffnet die Webseite https://exo-db.de";
+			this.toolStripMenuItemOpenHomepage.AutoToolTip = true;
+			this.toolStripMenuItemOpenHomepage.Image = global::EXO_DB.Properties.Resources.www_page;
+			this.toolStripMenuItemOpenHomepage.Name = "toolStripMenuItemOpenHomepage";
+			this.toolStripMenuItemOpenHomepage.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+			this.toolStripMenuItemOpenHomepage.Size = new System.Drawing.Size(222, 22);
+			this.toolStripMenuItemOpenHomepage.Text = "&Webseite öffnen";
+			this.toolStripMenuItemOpenHomepage.ToolTipText = "Webseite öffnen";
+			this.toolStripMenuItemOpenHomepage.Click += new System.EventHandler(this.ToolStripMenuItemOpenHomepage_Click);
+			this.toolStripMenuItemOpenHomepage.MouseEnter += new System.EventHandler(this.ToolStripMenuItemOpenHomepage_MouseEnter);
+			this.toolStripMenuItemOpenHomepage.MouseLeave += new System.EventHandler(this.ToolStripMenuItemOpenHomepage_MouseLeave);
+			// 
+			// toolStripMenuItemOpenGithub
+			// 
+			this.toolStripMenuItemOpenGithub.AccessibleDescription = "Öffnet die Github-Seite https://githb.com/mjohne/EXO-DB";
+			this.toolStripMenuItemOpenGithub.AutoToolTip = true;
+			this.toolStripMenuItemOpenGithub.Image = global::EXO_DB.Properties.Resources.tag;
+			this.toolStripMenuItemOpenGithub.Name = "toolStripMenuItemOpenGithub";
+			this.toolStripMenuItemOpenGithub.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+			this.toolStripMenuItemOpenGithub.Size = new System.Drawing.Size(222, 22);
+			this.toolStripMenuItemOpenGithub.Text = "&Github-Seite öffnen";
+			this.toolStripMenuItemOpenGithub.ToolTipText = "Github-Seite öffnen";
+			this.toolStripMenuItemOpenGithub.Click += new System.EventHandler(this.ToolStripMenuItemOpenGithub_Click);
+			this.toolStripMenuItemOpenGithub.MouseEnter += new System.EventHandler(this.ToolStripMenuItemOpenGithub_MouseEnter);
+			this.toolStripMenuItemOpenGithub.MouseLeave += new System.EventHandler(this.ToolStripMenuItemOpenGithub_MouseLeave);
 			// 
 			// toolStripContainer1
 			// 
@@ -384,15 +568,18 @@
 			// 
 			// MainForm
 			// 
+			this.AllowButtonSpecToolTips = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(784, 442);
 			this.Controls.Add(this.toolStripContainer2);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip;
+			this.MinimumSize = new System.Drawing.Size(800, 480);
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Exo-DB";
+			this.Text = "EXO-DB3";
+			this.TextExtra = "Verwaltungsprogramm für entdeckte Exoplaneten";
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.statusStrip.ResumeLayout(false);
 			this.statusStrip.PerformLayout();
@@ -434,10 +621,9 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFile;
 		private System.Windows.Forms.ToolStripContainer toolStripContainer2;
 		private System.Windows.Forms.ToolTip toolTip;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExit;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemHelp;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemInfo;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemInformation;
 		private ComponentFactory.Krypton.Navigator.KryptonNavigator kryptonNavigator;
 		private ComponentFactory.Krypton.Navigator.KryptonPage kryptonPageLoadDatabase;
 		private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonLoadInternalDatabase;
@@ -449,6 +635,18 @@
 		private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonSaveInternalDatabase;
 		private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonSaveOnlineDatabase;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLoadDatabase;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLoadInternalDatabase;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLoadOnlineDatabase;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLoadExternalDatabase;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenHomepage;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenGithub;
+		private System.Windows.Forms.ToolStripButton toolStripButtonLoadInternalDatabase;
+		private System.Windows.Forms.ToolStripButton toolStripButtonLoadOnlineDatabase;
+		private System.Windows.Forms.ToolStripButton toolStripButtonLoadExternalDatabase;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 	}
 }
 
