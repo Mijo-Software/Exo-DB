@@ -104,6 +104,7 @@
 			// 
 			// toolStripStatusLabel
 			// 
+			this.toolStripStatusLabel.AutoToolTip = true;
 			this.toolStripStatusLabel.Name = "toolStripStatusLabel";
 			this.toolStripStatusLabel.Size = new System.Drawing.Size(157, 17);
 			this.toolStripStatusLabel.Text = "Hier stehen einige Hilfstexte.";
@@ -181,6 +182,7 @@
 			this.tableLayoutPanel.SetColumnSpan(this.progressBarLoadingDatabase, 3);
 			this.progressBarLoadingDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.progressBarLoadingDatabase.Location = new System.Drawing.Point(3, 327);
+			this.progressBarLoadingDatabase.MarqueeAnimationSpeed = 1;
 			this.progressBarLoadingDatabase.Name = "progressBarLoadingDatabase";
 			this.progressBarLoadingDatabase.Size = new System.Drawing.Size(776, 14);
 			this.progressBarLoadingDatabase.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -291,6 +293,7 @@
 			// 
 			// toolStrip
 			// 
+			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonLoadInternalDatabase,
@@ -366,6 +369,7 @@
 			// menuStrip
 			// 
 			this.menuStrip.AllowItemReorder = true;
+			this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.menuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {

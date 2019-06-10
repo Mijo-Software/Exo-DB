@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="exo-db.ico" />
+    <None Include="Properties\Resources\accept_button.png" />
     <None Include="Properties\Resources\database_32.png" />
     <None Include="Properties\Resources\database_lightning_32.png" />
     <None Include="Properties\Resources\database_go_32.png" />
