@@ -106,7 +106,7 @@
 			// 
 			this.toolStripStatusLabel.AutoToolTip = true;
 			this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-			this.toolStripStatusLabel.Size = new System.Drawing.Size(157, 17);
+			this.toolStripStatusLabel.Size = new System.Drawing.Size(158, 17);
 			this.toolStripStatusLabel.Text = "Hier stehen einige Hilfstexte.";
 			this.toolStripStatusLabel.ToolTipText = "What da fuck?!";
 			// 
@@ -202,10 +202,10 @@
 			this.kryptonButtonSaveInternalDatabase.Values.Image = global::EXO_DB.Properties.Resources.database_save;
 			this.kryptonButtonSaveInternalDatabase.Values.Text = "Interne Datenbank speichern";
 			this.kryptonButtonSaveInternalDatabase.Click += new System.EventHandler(this.KryptonButtonSaveInternalDatabase_Click);
-			this.kryptonButtonSaveInternalDatabase.Enter += new System.EventHandler(this.KryptonButtonSaveInternalDatabase_Enter);
-			this.kryptonButtonSaveInternalDatabase.Leave += new System.EventHandler(this.KryptonButtonSaveInternalDatabase_Leave);
-			this.kryptonButtonSaveInternalDatabase.MouseEnter += new System.EventHandler(this.KryptonButtonSaveInternalDatabase_MouseEnter);
-			this.kryptonButtonSaveInternalDatabase.MouseLeave += new System.EventHandler(this.KryptonButtonSaveInternalDatabase_MouseLeave);
+			this.kryptonButtonSaveInternalDatabase.Enter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.kryptonButtonSaveInternalDatabase.Leave += new System.EventHandler(this.ClearStatusbar_Leave);
+			this.kryptonButtonSaveInternalDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.kryptonButtonSaveInternalDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// kryptonWrapLabelStatusOfProgressingDatabase
 			// 
@@ -232,10 +232,10 @@
 			this.kryptonButtonLoadOnlineDatabase.Values.Image = global::EXO_DB.Properties.Resources.database_lightning_32;
 			this.kryptonButtonLoadOnlineDatabase.Values.Text = "Online-Datenbank laden";
 			this.kryptonButtonLoadOnlineDatabase.Click += new System.EventHandler(this.KryptonButtonLoadOnlineDatabase_Click);
-			this.kryptonButtonLoadOnlineDatabase.Enter += new System.EventHandler(this.KryptonButtonLoadOnlineDatabase_Enter);
-			this.kryptonButtonLoadOnlineDatabase.Leave += new System.EventHandler(this.KryptonButtonLoadOnlineDatabase_Leave);
-			this.kryptonButtonLoadOnlineDatabase.MouseEnter += new System.EventHandler(this.KryptonButtonLoadOnlineDatabase_MouseEnter);
-			this.kryptonButtonLoadOnlineDatabase.MouseLeave += new System.EventHandler(this.KryptonButtonLoadOnlineDatabase_MouseLeave);
+			this.kryptonButtonLoadOnlineDatabase.Enter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.kryptonButtonLoadOnlineDatabase.Leave += new System.EventHandler(this.ClearStatusbar_Leave);
+			this.kryptonButtonLoadOnlineDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.kryptonButtonLoadOnlineDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// kryptonButtonLoadInternalDatabase
 			// 
@@ -250,10 +250,10 @@
 			this.kryptonButtonLoadInternalDatabase.Values.Image = global::EXO_DB.Properties.Resources.database_32;
 			this.kryptonButtonLoadInternalDatabase.Values.Text = "Interne Datenbank laden";
 			this.kryptonButtonLoadInternalDatabase.Click += new System.EventHandler(this.KryptonButtonLoadInternalDatabase_Click);
-			this.kryptonButtonLoadInternalDatabase.Enter += new System.EventHandler(this.KryptonButtonLoadInternalDatabase_Enter);
-			this.kryptonButtonLoadInternalDatabase.Leave += new System.EventHandler(this.KryptonButtonLoadInternalDatabase_Leave);
-			this.kryptonButtonLoadInternalDatabase.MouseEnter += new System.EventHandler(this.KryptonButtonLoadInternalDatabase_MouseEnter);
-			this.kryptonButtonLoadInternalDatabase.MouseLeave += new System.EventHandler(this.KryptonButtonLoadInternalDatabase_MouseLeave);
+			this.kryptonButtonLoadInternalDatabase.Enter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.kryptonButtonLoadInternalDatabase.Leave += new System.EventHandler(this.ClearStatusbar_Leave);
+			this.kryptonButtonLoadInternalDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.kryptonButtonLoadInternalDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// kryptonButtonLoadExternalDatabase
 			// 
@@ -268,10 +268,10 @@
 			this.kryptonButtonLoadExternalDatabase.Values.Image = global::EXO_DB.Properties.Resources.database_go_32;
 			this.kryptonButtonLoadExternalDatabase.Values.Text = "Externe Datenbank laden";
 			this.kryptonButtonLoadExternalDatabase.Click += new System.EventHandler(this.KryptonButtonLoadExternalDatabase_Click);
-			this.kryptonButtonLoadExternalDatabase.Enter += new System.EventHandler(this.KryptonButtonLoadExternalDatabase_Enter);
-			this.kryptonButtonLoadExternalDatabase.Leave += new System.EventHandler(this.KryptonButtonLoadExternalDatabase_Leave);
-			this.kryptonButtonLoadExternalDatabase.MouseEnter += new System.EventHandler(this.KryptonButtonLoadExternalDatabase_MouseEnter);
-			this.kryptonButtonLoadExternalDatabase.MouseLeave += new System.EventHandler(this.KryptonButtonLoadExternalDatabase_MouseLeave);
+			this.kryptonButtonLoadExternalDatabase.Enter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.kryptonButtonLoadExternalDatabase.Leave += new System.EventHandler(this.ClearStatusbar_Leave);
+			this.kryptonButtonLoadExternalDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.kryptonButtonLoadExternalDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// kryptonButtonSaveOnlineDatabase
 			// 
@@ -286,10 +286,10 @@
 			this.kryptonButtonSaveOnlineDatabase.Values.Image = global::EXO_DB.Properties.Resources.database_save;
 			this.kryptonButtonSaveOnlineDatabase.Values.Text = "Online-Datenbank speichern";
 			this.kryptonButtonSaveOnlineDatabase.Click += new System.EventHandler(this.KryptonButtonSaveOnlineDatabase_Click);
-			this.kryptonButtonSaveOnlineDatabase.Enter += new System.EventHandler(this.KryptonButtonSaveOnlineDatabase_Enter);
-			this.kryptonButtonSaveOnlineDatabase.Leave += new System.EventHandler(this.KryptonButtonSaveOnlineDatabase_Leave);
-			this.kryptonButtonSaveOnlineDatabase.MouseEnter += new System.EventHandler(this.KryptonButtonSaveOnlineDatabase_MouseEnter);
-			this.kryptonButtonSaveOnlineDatabase.MouseLeave += new System.EventHandler(this.KryptonButtonSaveOnlineDatabase_MouseLeave);
+			this.kryptonButtonSaveOnlineDatabase.Enter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.kryptonButtonSaveOnlineDatabase.Leave += new System.EventHandler(this.ClearStatusbar_Leave);
+			this.kryptonButtonSaveOnlineDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.kryptonButtonSaveOnlineDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStrip
 			// 
@@ -318,8 +318,8 @@
 			this.toolStripButtonLoadInternalDatabase.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButtonLoadInternalDatabase.Text = "Interne Datenbank laden";
 			this.toolStripButtonLoadInternalDatabase.Click += new System.EventHandler(this.ToolStripButtonLoadInternalDatabase_Click);
-			this.toolStripButtonLoadInternalDatabase.MouseEnter += new System.EventHandler(this.ToolStripButtonLoadInternalDatabase_MouseEnter);
-			this.toolStripButtonLoadInternalDatabase.MouseLeave += new System.EventHandler(this.ToolStripButtonLoadInternalDatabase_MouseLeave);
+			this.toolStripButtonLoadInternalDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripButtonLoadInternalDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripButtonLoadOnlineDatabase
 			// 
@@ -331,8 +331,8 @@
 			this.toolStripButtonLoadOnlineDatabase.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButtonLoadOnlineDatabase.Text = "Online-Datenbank laden";
 			this.toolStripButtonLoadOnlineDatabase.Click += new System.EventHandler(this.ToolStripButtonLoadOnlineDatabase_Click);
-			this.toolStripButtonLoadOnlineDatabase.MouseEnter += new System.EventHandler(this.ToolStripButtonLoadOnlineDatabase_MouseEnter);
-			this.toolStripButtonLoadOnlineDatabase.MouseLeave += new System.EventHandler(this.ToolStripButtonLoadOnlineDatabase_MouseLeave);
+			this.toolStripButtonLoadOnlineDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripButtonLoadOnlineDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripButtonLoadExternalDatabase
 			// 
@@ -344,13 +344,14 @@
 			this.toolStripButtonLoadExternalDatabase.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButtonLoadExternalDatabase.Text = "Externe Datenbank laden";
 			this.toolStripButtonLoadExternalDatabase.Click += new System.EventHandler(this.ToolStripButtonLoadExternalDatabase_Click);
-			this.toolStripButtonLoadExternalDatabase.MouseEnter += new System.EventHandler(this.ToolStripButtonLoadExternalDatabase_MouseEnter);
-			this.toolStripButtonLoadExternalDatabase.MouseLeave += new System.EventHandler(this.ToolStripButtonLoadExternalDatabase_MouseLeave);
+			this.toolStripButtonLoadExternalDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripButtonLoadExternalDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
 			this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+			this.toolStripSeparator3.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripButtonInformation
 			// 
@@ -363,8 +364,8 @@
 			this.toolStripButtonInformation.Text = "Info über EXO-DB3";
 			this.toolStripButtonInformation.ToolTipText = "Info über EXO-DB3";
 			this.toolStripButtonInformation.Click += new System.EventHandler(this.ToolStripButtonInformation_Click);
-			this.toolStripButtonInformation.MouseEnter += new System.EventHandler(this.ToolStripButtonInformation_MouseEnter);
-			this.toolStripButtonInformation.MouseLeave += new System.EventHandler(this.ToolStripButtonInformation_MouseLeave);
+			this.toolStripButtonInformation.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripButtonInformation.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// menuStrip
 			// 
@@ -394,8 +395,8 @@
 			this.toolStripMenuItemFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
 			this.toolStripMenuItemFile.Size = new System.Drawing.Size(46, 20);
 			this.toolStripMenuItemFile.Text = "&Datei";
-			this.toolStripMenuItemFile.MouseEnter += new System.EventHandler(this.ToolStripMenuItemFile_MouseEnter);
-			this.toolStripMenuItemFile.MouseLeave += new System.EventHandler(this.ToolStripMenuItemFile_MouseLeave);
+			this.toolStripMenuItemFile.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripMenuItemFile.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripMenuItemLoadDatabase
 			// 
@@ -411,8 +412,8 @@
 			this.toolStripMenuItemLoadDatabase.Size = new System.Drawing.Size(207, 22);
 			this.toolStripMenuItemLoadDatabase.Text = "&Datenbank laden";
 			this.toolStripMenuItemLoadDatabase.ToolTipText = "Datenbank laden";
-			this.toolStripMenuItemLoadDatabase.MouseEnter += new System.EventHandler(this.ToolStripMenuItemLoadDatabase_MouseEnter);
-			this.toolStripMenuItemLoadDatabase.MouseLeave += new System.EventHandler(this.ToolStripMenuItemLoadDatabase_MouseLeave);
+			this.toolStripMenuItemLoadDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripMenuItemLoadDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripMenuItemLoadInternalDatabase
 			// 
@@ -420,12 +421,12 @@
 			this.toolStripMenuItemLoadInternalDatabase.AutoToolTip = true;
 			this.toolStripMenuItemLoadInternalDatabase.Image = global::EXO_DB.Properties.Resources.database;
 			this.toolStripMenuItemLoadInternalDatabase.Name = "toolStripMenuItemLoadInternalDatabase";
-			this.toolStripMenuItemLoadInternalDatabase.Size = new System.Drawing.Size(204, 22);
+			this.toolStripMenuItemLoadInternalDatabase.Size = new System.Drawing.Size(205, 22);
 			this.toolStripMenuItemLoadInternalDatabase.Text = "&Interne Datenbank laden";
 			this.toolStripMenuItemLoadInternalDatabase.ToolTipText = "Interne Datenbank laden";
 			this.toolStripMenuItemLoadInternalDatabase.Click += new System.EventHandler(this.ToolStripMenuItemLoadInternalDatabase_Click);
-			this.toolStripMenuItemLoadInternalDatabase.MouseEnter += new System.EventHandler(this.ToolStripMenuItemLoadInternalDatabase_MouseEnter);
-			this.toolStripMenuItemLoadInternalDatabase.MouseLeave += new System.EventHandler(this.ToolStripMenuItemLoadInternalDatabase_MouseLeave);
+			this.toolStripMenuItemLoadInternalDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripMenuItemLoadInternalDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripMenuItemLoadOnlineDatabase
 			// 
@@ -433,12 +434,12 @@
 			this.toolStripMenuItemLoadOnlineDatabase.AutoToolTip = true;
 			this.toolStripMenuItemLoadOnlineDatabase.Image = global::EXO_DB.Properties.Resources.database_lightning;
 			this.toolStripMenuItemLoadOnlineDatabase.Name = "toolStripMenuItemLoadOnlineDatabase";
-			this.toolStripMenuItemLoadOnlineDatabase.Size = new System.Drawing.Size(204, 22);
+			this.toolStripMenuItemLoadOnlineDatabase.Size = new System.Drawing.Size(205, 22);
 			this.toolStripMenuItemLoadOnlineDatabase.Text = "&Online-Datenbank laden";
 			this.toolStripMenuItemLoadOnlineDatabase.ToolTipText = "Online-Datenbank laden";
 			this.toolStripMenuItemLoadOnlineDatabase.Click += new System.EventHandler(this.ToolStripMenuItemLoadOnlineDatabase_Click);
-			this.toolStripMenuItemLoadOnlineDatabase.MouseEnter += new System.EventHandler(this.ToolStripMenuItemLoadOnlineDatabase_MouseEnter);
-			this.toolStripMenuItemLoadOnlineDatabase.MouseLeave += new System.EventHandler(this.ToolStripMenuItemLoadOnlineDatabase_MouseLeave);
+			this.toolStripMenuItemLoadOnlineDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripMenuItemLoadOnlineDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripMenuItemLoadExternalDatabase
 			// 
@@ -446,12 +447,12 @@
 			this.toolStripMenuItemLoadExternalDatabase.AutoToolTip = true;
 			this.toolStripMenuItemLoadExternalDatabase.Image = global::EXO_DB.Properties.Resources.database_go;
 			this.toolStripMenuItemLoadExternalDatabase.Name = "toolStripMenuItemLoadExternalDatabase";
-			this.toolStripMenuItemLoadExternalDatabase.Size = new System.Drawing.Size(204, 22);
+			this.toolStripMenuItemLoadExternalDatabase.Size = new System.Drawing.Size(205, 22);
 			this.toolStripMenuItemLoadExternalDatabase.Text = "&Externe Datenbank laden";
 			this.toolStripMenuItemLoadExternalDatabase.ToolTipText = "Externe Datenbank laden";
 			this.toolStripMenuItemLoadExternalDatabase.Click += new System.EventHandler(this.ToolStripMenuItemLoadExternalDatabase_Click);
-			this.toolStripMenuItemLoadExternalDatabase.MouseEnter += new System.EventHandler(this.ToolStripMenuItemLoadExternalDatabase_MouseEnter);
-			this.toolStripMenuItemLoadExternalDatabase.MouseLeave += new System.EventHandler(this.ToolStripMenuItemLoadExternalDatabase_MouseLeave);
+			this.toolStripMenuItemLoadExternalDatabase.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripMenuItemLoadExternalDatabase.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripSeparator1
 			// 
@@ -470,8 +471,8 @@
 			this.toolStripMenuItemExit.Text = "&Beenden";
 			this.toolStripMenuItemExit.ToolTipText = "Beenden";
 			this.toolStripMenuItemExit.Click += new System.EventHandler(this.ToolStripMenuItemExit_Click);
-			this.toolStripMenuItemExit.MouseEnter += new System.EventHandler(this.ToolStripMenuItemExit_MouseEnter);
-			this.toolStripMenuItemExit.MouseLeave += new System.EventHandler(this.ToolStripMenuItemExit_MouseLeave);
+			this.toolStripMenuItemExit.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripMenuItemExit.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripMenuItemHelp
 			// 
@@ -486,8 +487,8 @@
 			this.toolStripMenuItemHelp.Size = new System.Drawing.Size(44, 20);
 			this.toolStripMenuItemHelp.Text = "&Hilfe";
 			this.toolStripMenuItemHelp.ToolTipText = "Hilfe";
-			this.toolStripMenuItemHelp.MouseEnter += new System.EventHandler(this.ToolStripMenuItemHelp_MouseEnter);
-			this.toolStripMenuItemHelp.MouseLeave += new System.EventHandler(this.ToolStripMenuItemHelp_MouseLeave);
+			this.toolStripMenuItemHelp.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripMenuItemHelp.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripMenuItemInformation
 			// 
@@ -500,8 +501,8 @@
 			this.toolStripMenuItemInformation.Text = "&Info über EXO-DB3";
 			this.toolStripMenuItemInformation.ToolTipText = "Info über EXO-DB3";
 			this.toolStripMenuItemInformation.Click += new System.EventHandler(this.ToolStripMenuItemInfo_Click);
-			this.toolStripMenuItemInformation.MouseEnter += new System.EventHandler(this.ToolStripMenuItemInformation_MouseEnter);
-			this.toolStripMenuItemInformation.MouseLeave += new System.EventHandler(this.ToolStripMenuItemInformation_MouseLeave);
+			this.toolStripMenuItemInformation.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripMenuItemInformation.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripSeparator2
 			// 
@@ -519,8 +520,8 @@
 			this.toolStripMenuItemOpenHomepage.Text = "&Webseite öffnen";
 			this.toolStripMenuItemOpenHomepage.ToolTipText = "Webseite öffnen";
 			this.toolStripMenuItemOpenHomepage.Click += new System.EventHandler(this.ToolStripMenuItemOpenHomepage_Click);
-			this.toolStripMenuItemOpenHomepage.MouseEnter += new System.EventHandler(this.ToolStripMenuItemOpenHomepage_MouseEnter);
-			this.toolStripMenuItemOpenHomepage.MouseLeave += new System.EventHandler(this.ToolStripMenuItemOpenHomepage_MouseLeave);
+			this.toolStripMenuItemOpenHomepage.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripMenuItemOpenHomepage.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripMenuItemOpenGithub
 			// 
@@ -533,8 +534,8 @@
 			this.toolStripMenuItemOpenGithub.Text = "&Github-Seite öffnen";
 			this.toolStripMenuItemOpenGithub.ToolTipText = "Github-Seite öffnen";
 			this.toolStripMenuItemOpenGithub.Click += new System.EventHandler(this.ToolStripMenuItemOpenGithub_Click);
-			this.toolStripMenuItemOpenGithub.MouseEnter += new System.EventHandler(this.ToolStripMenuItemOpenGithub_MouseEnter);
-			this.toolStripMenuItemOpenGithub.MouseLeave += new System.EventHandler(this.ToolStripMenuItemOpenGithub_MouseLeave);
+			this.toolStripMenuItemOpenGithub.MouseEnter += new System.EventHandler(this.SetStatusbar_Enter);
+			this.toolStripMenuItemOpenGithub.MouseLeave += new System.EventHandler(this.ClearStatusbar_Leave);
 			// 
 			// toolStripContainer1
 			// 
