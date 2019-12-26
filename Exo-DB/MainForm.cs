@@ -1,7 +1,4 @@
-﻿using ComponentFactory.Krypton.Navigator;
-using ComponentFactory.Krypton.Toolkit;
-using LumenWorks.Framework.IO.Csv;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -9,443 +6,373 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Windows.Forms;
+using ComponentFactory.Krypton.Navigator;
+using ComponentFactory.Krypton.Toolkit;
+using LumenWorks.Framework.IO.Csv;
+using System.Diagnostics;
 
 namespace EXO_DB
 {
 	public partial class MainForm : KryptonForm
 	{
-		private uint
-			ignoredItems, maxEntries, maxColumns;
-		private WebClient webClient = new WebClient();
-		private List<string> planetHostname = new List<string>();
-		private List<string> planetLetter = new List<string>();
-		private List<string> planetName = new List<string>();
-		private List<string> planetDiscoveryMethod = new List<string>();
-		private List<string> planetControversialFlag = new List<string>();
-		private List<string> planetNumberofPlanets = new List<string>();
-		private List<string> planetOrbitalPeriod = new List<string>();
-		private List<string> planetOrbitalPeriodUpperUncertainty = new List<string>();
-		private List<string> planetOrbitalPeriodLowerUncertainty = new List<string>();
-		private List<string> planetOrbitalPeriodLimitFlag = new List<string>();
-		private List<string> planetSemiMajorAxis = new List<string>();
-		private List<string> planetSemiMajorAxisUpperUncertainty = new List<string>();
-		private List<string> planetSemiMajorAxisLowerUncertainty = new List<string>();
-		private List<string> planetSemiMajorAxisLimitFlag = new List<string>();
-		private List<string> planetNumericEccentricity = new List<string>();
-		private List<string> planetNumericEccentricityUpperUncertainty = new List<string>();
-		private List<string> planetNumericEccentricityUncertainty = new List<string>();
-		private List<string> planetNumericEccentricityLimitFlag = new List<string>();
-		private List<string> planetInclination = new List<string>();
-		private List<string> planetInclinationUpperUncertainty = new List<string>();
-		private List<string> planetInclinationLowerUncertainty = new List<string>();
-		private List<string> planetInclinationLimitFlag = new List<string>();
-		private List<string> planetPotentialMassInJupiter = new List<string>();
-		private List<string> planetPotentialMassInJupiterUpperUncertainty = new List<string>();
-		private List<string> planetPotentialMassInJupiterLowerUncertainty = new List<string>();
-		private List<string> planetPotentialMassInJupiterLimitFlag = new List<string>();
-		private List<string> planetPotentialMassProvenance = new List<string>();
-		private List<string> planetRadiusInJupiter = new List<string>();
-		private List<string> planetRadiusInJupiterUpperUncertainty = new List<string>();
-		private List<string> planetRadiusInJupiterLowerUncertainty = new List<string>();
-		private List<string> planetRadiusInJupiterLimitFlag = new List<string>();
-		private List<string> planetDensity = new List<string>();
-		private List<string> planetDensityUpperUncertainty = new List<string>();
-		private List<string> planetDensityLowerUncertainty = new List<string>();
-		private List<string> planetDensityLimitFlag = new List<string>();
-		private List<string> planetTtvFlag = new List<string>();
-		private List<string> planetKeplerFieldFlag = new List<string>();
-		private List<string> planetK2MissionFlag = new List<string>();
-		private List<string> planetNumberOfNotes = new List<string>();
-		private List<string> rectascension = new List<string>();
-		private List<string> rectascensionAsString = new List<string>();
-		private List<string> declination = new List<string>();
-		private List<string> declinationAsString = new List<string>();
-		private List<string> starDistance = new List<string>();
-		private List<string> starDistanceUpperUncertainty = new List<string>();
-		private List<string> starDistanceLowerUncertainty = new List<string>();
-		private List<string> starDistanceLimitFlag = new List<string>();
-		private List<string> starOpticalMagnitude = new List<string>();
-		private List<string> starOpticalMagnitudeUncertainty = new List<string>();
-		private List<string> starOpticalMagnitudeLimitFlag = new List<string>();
-		private List<string> starOpticalMagnitudeBand = new List<string>();
-		private List<string> gaiaGBand = new List<string>();
-		private List<string> gaiaGBandUncertainty = new List<string>();
-		private List<string> gaiaGBandLimitFlag = new List<string>();
-		private List<string> starEffectiveTemperature = new List<string>();
-		private List<string> starEffectiveTemperatureUpperUncertainty = new List<string>();
-		private List<string> starEffectiveTemperatureLowerUncertainty = new List<string>();
-		private List<string> starEffectiveTemperatureLimitFlag = new List<string>();
-		private List<string> starMass = new List<string>();
-		private List<string> starMassUpperUncertainty = new List<string>();
-		private List<string> starMassLowerUncertainty = new List<string>();
-		private List<string> starMassLimitFlag = new List<string>();
-		private List<string> starRadius = new List<string>();
-		private List<string> starRadiusUpperUncertainty = new List<string>();
-		private List<string> starRadiusLowerUncertainty = new List<string>();
-		private List<string> starRadiusLimitFlag = new List<string>();
-		private List<string> dateLastUpdate = new List<string>();
-		private List<string> planetTransitFlag = new List<string>();
-		private List<string> planetRadialVelocityFlag = new List<string>();
-		private List<string> planetImagingFlag = new List<string>();
-		private List<string> planetAstrometryFlag = new List<string>();
-		private List<string> planetOrbitalModulationFlag = new List<string>();
-		private List<string> planetCircumbinaryFlag = new List<string>();
-		private List<string> planetCalculatedAngularSeparation = new List<string>();
-		private List<string> planetCalculatedAngularSeparationUpperUncertainty = new List<string>();
-		private List<string> planetCalculatedAngularSeparationLowerUncertainty = new List<string>();
-		private List<string> planetTimeOfPeriastron = new List<string>();
-		private List<string> planetTimeOfPeriastronUpperUncertainty = new List<string>();
-		private List<string> planetTimeOfPeriastronLowerUncertainty = new List<string>();
-		private List<string> planetTimeOfPeriastronLimitFlag = new List<string>();
-		private List<string> planetLongitudeOfPeriastron = new List<string>();
-		private List<string> planetLongitudeOfPeriastronUpperUncertainty = new List<string>();
-		private List<string> planetLongitudeOfPeriastronLowerUncertainty = new List<string>();
-		private List<string> planetLongitudeOfPeriastronLimitFlag = new List<string>();
-		private List<string> planetRadialVelocityAmplitude = new List<string>();
-		private List<string> planetRadialVelocityAmplitudeUpperUncertainty = new List<string>();
-		private List<string> planetRadialVelocityAmplitudeLowerUncertainty = new List<string>();
-		private List<string> planetRadialVelocityAmplitudeLimitFlag = new List<string>();
-		private List<string> planetEquilibriumTemperature = new List<string>();
-		private List<string> planetEquilibriumTemperatureUpperUncertainty = new List<string>();
-		private List<string> planetEquilibriumTemperatureLowerUncertainty = new List<string>();
-		private List<string> planetEquilibriumTemperatureLimitFlag = new List<string>();
-		private List<string> planetInsolationFlux = new List<string>();
-		private List<string> planetInsolationFluxUpperUncertainty = new List<string>();
-		private List<string> planetInsolationFluxLowerUncertainty = new List<string>();
-		private List<string> planetInsolationFluxLimitFlag = new List<string>();
-		private List<string> planetMassInJupiter = new List<string>();
-		private List<string> planetMassInJupiterUpperUncertainty = new List<string>();
-		private List<string> planetMassInJupiterLowerUncertainty = new List<string>();
-		private List<string> planetMassInJupiterLimitFlag = new List<string>();
-		private List<string> planetMsiniInJupiter = new List<string>();
-		private List<string> planetMsiniInJupiterUpperUncertainty = new List<string>();
-		private List<string> planetMsiniInJupiterLowerUncertainty = new List<string>();
-		private List<string> planetMsiniInJupiterLimitFlag = new List<string>();
-		private List<string> planetMassInEarth = new List<string>();
-		private List<string> planetMassInEarthUpperUncertainty = new List<string>();
-		private List<string> planetMassInEarthLowerUncertainty = new List<string>();
-		private List<string> planetMassInEarthLimitFlag = new List<string>();
-		private List<string> planetMsiniInEarth = new List<string>();
-		private List<string> planetMsiniInEarthUpperUncertainty = new List<string>();
-		private List<string> planetMsiniInEarthLowerUncertainty = new List<string>();
-		private List<string> planetMsiniInEarthLimitFlag = new List<string>();
-		private List<string> planetPotentialMassInEarth = new List<string>();
-		private List<string> planetPotentialMassInEarthUpperUncertainty = new List<string>();
-		private List<string> planetPotentialMassInEarthLowerUncertainty = new List<string>();
-		private List<string> planetPotentialMassInEarthLimitFlag = new List<string>();
-		private List<string> planetRadiusInEarth = new List<string>();
-		private List<string> planetRadiusInEarthUpperUncertainty = new List<string>();
-		private List<string> planetRadiusInEarthLowerUncertainty = new List<string>();
-		private List<string> planetRadiusInEarthLimitFlag = new List<string>();
-		private List<string> planetRadiusInSun = new List<string>();
-		private List<string> planetRadiusInSunUpperUncertainty = new List<string>();
-		private List<string> planetRadiusInSunLowerUncertainty = new List<string>();
-		private List<string> planetRadiusInSunLimitFlag = new List<string>();
-		private List<string> planetTransitDepth = new List<string>();
-		private List<string> planetTransitDepthUpperUncertainty = new List<string>();
-		private List<string> planetTransitDepthLowerUncertainty = new List<string>();
-		private List<string> planetTransitDepthLimitFlag = new List<string>();
-		private List<string> planetTransitDuration = new List<string>();
-		private List<string> planetTransitDurationUpperUncertainty = new List<string>();
-		private List<string> planetTransitDurationLowerUncertainty = new List<string>();
-		private List<string> planetTransitDurationLimitFlag = new List<string>();
-		private List<string> planetTransitMidpoint = new List<string>();
-		private List<string> planetTransitMidpointUpperUncertainty = new List<string>();
-		private List<string> planetTransitMidpointLowerUncertainty = new List<string>();
-		private List<string> planetTransitMidpointLimitFlag = new List<string>();
-		private List<string> planetTimeSystemReference = new List<string>();
-		private List<string> planetImpactParameter = new List<string>();
-		private List<string> planetImpactParameterUpperUncertainty = new List<string>();
-		private List<string> planetImpactParameterLowerUncertainty = new List<string>();
-		private List<string> planetImpactParameterLimitFlag = new List<string>();
-		private List<string> planetOccultationDepth = new List<string>();
-		private List<string> planetOccultationDepthUpperUncertainty = new List<string>();
-		private List<string> planetOccultationDepthLowerUncertainty = new List<string>();
-		private List<string> planetOccultationDepthLimitFlag = new List<string>();
-		private List<string> planetRatioOfDistanceToStellarRadius = new List<string>();
-		private List<string> planetRatioOfDistanceToStellarRadiusUpperUncertainty = new List<string>();
-		private List<string> planetRatioOfDistanceToStellarRadiusLowerUncertainty = new List<string>();
-		private List<string> planetRatioOfDistanceToStellarRadiusLimitFlag = new List<string>();
-		private List<string> planetRatioOfPlanetToStellarRadius = new List<string>();
-		private List<string> planetRatioOfPlanetToStellarRadiusUpperUncertainty = new List<string>();
-		private List<string> planetRatioOfPlanetToStellarRadiusLowerUncertainty = new List<string>();
-		private List<string> planetRatioOfPlanetToStellarRadiusLimitFlag = new List<string>();
-		private List<string> planetDefaultReference = new List<string>();
-		private List<string> planetYearOfDiscovery = new List<string>();
-		private List<string> planetDiscoveryReference = new List<string>();
-		private List<string> planetDiscoveryLocale = new List<string>();
-		private List<string> planetDiscoveryFacility = new List<string>();
-		private List<string> planetDiscoveryTelescope = new List<string>();
-		private List<string> planeDiscoveryInstrument = new List<string>();
-		private List<string> planetStatus = new List<string>();
-		private List<string> planetNumberOfMoonsInSystem = new List<string>();
-		private List<string> planetNumberOfStellarAndPlanetParameters = new List<string>();
-		private List<string> planetNumberOfStellarAndPlanetReferences = new List<string>();
-		private List<string> planetLinkToExoplanetEncyclopaedia = new List<string>();
-		private List<string> planetLinkToExoplanetDataExplorer = new List<string>();
-		private List<string> planetPublicationDate = new List<string>();
-		private List<string> hdName = new List<string>();
-		private List<string> hipName = new List<string>();
-		private List<string> starRectascension = new List<string>();
-		private List<string> starGalacticLongitude = new List<string>();
-		private List<string> starGalacticLatitude = new List<string>();
-		private List<string> starEclipticLongitude = new List<string>();
-		private List<string> starEclipticLatitude = new List<string>();
-		private List<string> starParallax = new List<string>();
-		private List<string> starParallaxUpperUncertainty = new List<string>();
-		private List<string> starParallaxLowerUncertainty = new List<string>();
-		private List<string> starParallaxLimitFlag = new List<string>();
-		private List<string> gaiaParallax = new List<string>();
-		private List<string> gaiaParallaxUpperUncertainty = new List<string>();
-		private List<string> gaiaParallaxLowerUncertainty = new List<string>();
-		private List<string> gaiaParallaxLimitFlag = new List<string>();
-		private List<string> gaiaDistance = new List<string>();
-		private List<string> gaiaDistanceUpperUncertainty = new List<string>();
-		private List<string> gaiaDistanceLowerUncertainty = new List<string>();
-		private List<string> gaiaDistanceLimitFlag = new List<string>();
-		private List<string> starProperMotionByRectascension = new List<string>();
-		private List<string> starProperMotionByRectascensionUncertainty = new List<string>();
-		private List<string> starProperMotionByRectascensionLimitFlag = new List<string>();
-		private List<string> starProperMotionByDeclination = new List<string>();
-		private List<string> starProperMotionByDeclinationUncertainty = new List<string>();
-		private List<string> starProperMotionByDeclinationLimitFlag = new List<string>();
-		private List<string> starTotalProperMotion = new List<string>();
-		private List<string> starTotalProperMotionUncertainty = new List<string>();
-		private List<string> starTotalProperMotionLimitFlag = new List<string>();
-		private List<string> gaiaProperMotionByRectascension = new List<string>();
-		private List<string> gaiaProperMotionByRectascensionUncertainty = new List<string>();
-		private List<string> gaiaProperMotionByRectascensionLimitFlag = new List<string>();
-		private List<string> gaiaProperMotionByDeclination = new List<string>();
-		private List<string> gaiaProperMotionByDeclinationUncertainty = new List<string>();
-		private List<string> gaiaProperMotionByDeclinationLimitFlag = new List<string>();
-		private List<string> gaiaTotalProperMotion = new List<string>();
-		private List<string> gaiaTotalProperMotionUncertainty = new List<string>();
-		private List<string> gaiaTotalProperMotionLimitFlag = new List<string>();
-		private List<string> starRadialVelocity = new List<string>();
-		private List<string> starRadialVelocityUpperUncertainty = new List<string>();
-		private List<string> starRadialVelocityLowerUncertainty = new List<string>();
-		private List<string> starRadialVelocityLimitFlag = new List<string>();
-		private List<string> starSpectralType = new List<string>();
-		private List<string> starSpectralTypeAsString = new List<string>();
-		private List<string> starSpectralTypeUncertainty = new List<string>();
-		private List<string> starSpectralTypeLimitFlag = new List<string>();
-		private List<string> starSurfaceGravity = new List<string>();
-		private List<string> starSurfaceGravityUpperUncertainty = new List<string>();
-		private List<string> starSurfaceGravityLowerUncertainty = new List<string>();
-		private List<string> starSurfaceGravityLimitFlag = new List<string>();
-		private List<string> starLuminosity = new List<string>();
-		private List<string> starLuminosityUpperUncertainty = new List<string>();
-		private List<string> starLuminosityLowerUncertainty = new List<string>();
-		private List<string> starLuminosityLimitFlag = new List<string>();
-		private List<string> starDensity = new List<string>();
-		private List<string> starDensityUpperUncertainty = new List<string>();
-		private List<string> starDensityLowerUncertainty = new List<string>();
-		private List<string> starDensityLimitFlag = new List<string>();
-		private List<string> starMetalicity = new List<string>();
-		private List<string> starMetalicityUpperUncertainty = new List<string>();
-		private List<string> starMetalicityLowerUncertainty = new List<string>();
-		private List<string> starMetalicityLimitFlag = new List<string>();
-		private List<string> starMetalicityRatio = new List<string>();
-		private List<string> starAge = new List<string>();
-		private List<string> starAgeUpperUncertainty = new List<string>();
-		private List<string> starAgeLowerUncertainty = new List<string>();
-		private List<string> starAgeLimitFlag = new List<string>();
-		private List<string> starRotationalVelocityVsini = new List<string>();
-		private List<string> starRotationalVelocityVsiniUpperUncertainty = new List<string>();
-		private List<string> starRotationalVelocityVsiniLowerUncertainty = new List<string>();
-		private List<string> starRotationalVelocityVsiniLimitFlag = new List<string>();
-		private List<string> starActivitySindex = new List<string>();
-		private List<string> starActivitySindexUncertainty = new List<string>();
-		private List<string> starActivitySindexLimitFlag = new List<string>();
-		private List<string> starActivityLog = new List<string>();
-		private List<string> starActivityLogUncertainty = new List<string>();
-		private List<string> starActivityLogLimitFlag = new List<string>();
-		private List<string> starXrayActivityLog = new List<string>();
-		private List<string> starXrayActivityLogUncertainty = new List<string>();
-		private List<string> starXrayActivityLogLimitFlag = new List<string>();
-		private List<string> swaspIdentifier = new List<string>();
-		private List<string> starNumerOfTimeSeries = new List<string>();
-		private List<string> starNumerOfPlanetTransitLightCurves = new List<string>();
-		private List<string> starNumerOfGeneralLightCurves = new List<string>();
-		private List<string> starNumerOfRadialVelocityTimeSeries = new List<string>();
-		private List<string> starNumerOfAmateurLightCurves = new List<string>();
-		private List<string> starNumerOfImages = new List<string>();
-		private List<string> starNumerOfSpectra = new List<string>();
-		private List<string> starUBand = new List<string>();
-		private List<string> starUBandUncertainty = new List<string>();
-		private List<string> starUBandLimitFlag = new List<string>();
-		private List<string> starVBand = new List<string>();
-		private List<string> starVBandUncertainty = new List<string>();
-		private List<string> starVBandLimitFlag = new List<string>();
-		private List<string> starBBand = new List<string>();
-		private List<string> starBBandUncertainty = new List<string>();
-		private List<string> starBBandLimitFlag = new List<string>();
-		private List<string> starRBand = new List<string>();
-		private List<string> starRBandUncertainty = new List<string>();
-		private List<string> starRBandLimitFlag = new List<string>();
-		private List<string> starIBand = new List<string>();
-		private List<string> starIBandUncertainty = new List<string>();
-		private List<string> starIBandLimitFlag = new List<string>();
-		private List<string> starJBand = new List<string>();
-		private List<string> starJBandUncertainty = new List<string>();
-		private List<string> starJBandLimitFlag = new List<string>();
-		private List<string> starHBand = new List<string>();
-		private List<string> starHBandUncertainty = new List<string>();
-		private List<string> starHBandLimitFlag = new List<string>();
-		private List<string> starKsBand = new List<string>();
-		private List<string> starksBandUncertainty = new List<string>();
-		private List<string> starKsBandLimitFlag = new List<string>();
-		private List<string> starWise34um = new List<string>();
-		private List<string> starWise34umUncertainty = new List<string>();
-		private List<string> starWise34umLimitFlag = new List<string>();
-		private List<string> starWise46um = new List<string>();
-		private List<string> starWise46umUncertainty = new List<string>();
-		private List<string> starWise46umLimitFlag = new List<string>();
-		private List<string> starWise12um = new List<string>();
-		private List<string> starWise12umUncertainty = new List<string>();
-		private List<string> starWise12umLimitFlag = new List<string>();
-		private List<string> starWise22um = new List<string>();
-		private List<string> starWise22umUncertainty = new List<string>();
-		private List<string> starWise22umLimitFlag = new List<string>();
-		private List<string> starIrac36um = new List<string>();
-		private List<string> starIrac36umUncertainty = new List<string>();
-		private List<string> starIrac36umLimitFlag = new List<string>();
-		private List<string> starIrac45um = new List<string>();
-		private List<string> starIrac45umUncertainty = new List<string>();
-		private List<string> starIrac45umLimitFlag = new List<string>();
-		private List<string> starIrac58um = new List<string>();
-		private List<string> starIrac58umUncertainty = new List<string>();
-		private List<string> starIrac58umLimitFlag = new List<string>();
-		private List<string> starIrac80um = new List<string>();
-		private List<string> starIrac80umUncertainty = new List<string>();
-		private List<string> starIrac80umLimitFlag = new List<string>();
-		private List<string> starMips24um = new List<string>();
-		private List<string> starMips24umUncertainty = new List<string>();
-		private List<string> starMips24umLimitFlag = new List<string>();
-		private List<string> starMips70um = new List<string>();
-		private List<string> starMips70umUncertainty = new List<string>();
-		private List<string> starMips70umLimitFlag = new List<string>();
-		private List<string> starMips160um = new List<string>();
-		private List<string> starMips160umUncertainty = new List<string>();
-		private List<string> starMips160umLimitFlag = new List<string>();
-		private List<string> starIras12um = new List<string>();
-		private List<string> starIras12umUncertainty = new List<string>();
-		private List<string> starIras12umLimitFlag = new List<string>();
-		private List<string> starIras25um = new List<string>();
-		private List<string> starIras25umUncertainty = new List<string>();
-		private List<string> starIras25umLimitFlag = new List<string>();
-		private List<string> starIras60um = new List<string>();
-		private List<string> starIras60umUncertainty = new List<string>();
-		private List<string> starIras60umLimitFlag = new List<string>();
-		private List<string> starIras100um = new List<string>();
-		private List<string> starIras100umUncertainty = new List<string>();
-		private List<string> starIras100umLimitFlag = new List<string>();
-		private List<string> starNumberOfPhotometryMeasurements = new List<string>();
-		private List<string> starUbColorIndex = new List<string>();
-		private List<string> starUbColorIndexUncertainty = new List<string>();
-		private List<string> starUbColorIndexLimitFlag = new List<string>();
-		private List<string> starBvColorIndex = new List<string>();
-		private List<string> starBvColorIndexUncertainty = new List<string>();
-		private List<string> starBvColorIndexLimitFlag = new List<string>();
-		private List<string> starViColorIndex = new List<string>();
-		private List<string> starViColorIndexUncertainty = new List<string>();
-		private List<string> starViColorIndexLimitFlag = new List<string>();
-		private List<string> starVrColorIndex = new List<string>();
-		private List<string> starVrColorIndexUncertainty = new List<string>();
-		private List<string> starVrColorIndexLimitFlag = new List<string>();
-		private List<string> starJhColorIndex = new List<string>();
-		private List<string> starJhColorIndexUncertainty = new List<string>();
-		private List<string> starJhColorIndexLimitFlag = new List<string>();
-		private List<string> starHksColorIndex = new List<string>();
-		private List<string> starHksColorIndexUncertainty = new List<string>();
-		private List<string> starHksColorIndexLimitFlag = new List<string>();
-		private List<string> starJksColorIndex = new List<string>();
-		private List<string> starJksColorIndexUncertainty = new List<string>();
-		private List<string> starJksColorIndexLimitFlag = new List<string>();
-		private List<string> starByColorIndex = new List<string>();
-		private List<string> starByColorIndexUncertainty = new List<string>();
-		private List<string> starByColorIndexLimitFlag = new List<string>();
-		private List<string> starM1ColorIndex = new List<string>();
-		private List<string> starM1ColorIndexUncertainty = new List<string>();
-		private List<string> starM1ColorIndexLimitFlag = new List<string>();
-		private List<string> starC1ColorIndex = new List<string>();
-		private List<string> starC1ColorIndexUncertainty = new List<string>();
-		private List<string> starC1ColorIndexLimitFlag = new List<string>();
-		private List<string> starNumberOfColorMeasurements = new List<string>();
+		private uint ignoredItems, maxEntries, maxColumns;
 
-		#region Assemblyattributaccessoren
-
-		public string AssemblyTitle
-		{
-			get
-			{
-				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(attributeType: typeof(AssemblyTitleAttribute), inherit: false);
-				if (attributes.Length > 0)
-				{
-					AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-					if (titleAttribute.Title != "")
-					{
-						return titleAttribute.Title;
-					}
-				}
-				return System.IO.Path.GetFileNameWithoutExtension(path: Assembly.GetExecutingAssembly().CodeBase);
-			}
-		}
-
-		public string AssemblyVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
-		public string AssemblyDescription
-		{
-			get
-			{
-				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(attributeType: typeof(AssemblyDescriptionAttribute), inherit: false);
-				if (attributes.Length == 0)
-				{
-					return "";
-				}
-				return ((AssemblyDescriptionAttribute)attributes[0]).Description;
-			}
-		}
-
-		public string AssemblyProduct
-		{
-			get
-			{
-				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(attributeType: typeof(AssemblyProductAttribute), inherit: false);
-				if (attributes.Length == 0)
-				{
-					return "";
-				}
-				return ((AssemblyProductAttribute)attributes[0]).Product;
-			}
-		}
-
-		public string AssemblyCopyright
-		{
-			get
-			{
-				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(attributeType: typeof(AssemblyCopyrightAttribute), inherit: false);
-				if (attributes.Length == 0)
-				{
-					return "";
-				}
-				return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
-			}
-		}
-
-		public string AssemblyCompany
-		{
-			get
-			{
-				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(attributeType: typeof(AssemblyCompanyAttribute), inherit: false);
-				if (attributes.Length == 0)
-				{
-					return "";
-				}
-				return ((AssemblyCompanyAttribute)attributes[0]).Company;
-			}
-		}
-		#endregion
+		private readonly WebClient webClient = new WebClient();
+		private readonly List<string> planetHostname = new List<string>();
+		private readonly List<string> planetLetter = new List<string>();
+		private readonly List<string> planetName = new List<string>();
+		private readonly List<string> planetDiscoveryMethod = new List<string>();
+		private readonly List<string> planetControversialFlag = new List<string>();
+		private readonly List<string> planetNumberofPlanets = new List<string>();
+		private readonly List<string> planetOrbitalPeriod = new List<string>();
+		private readonly List<string> planetOrbitalPeriodUpperUncertainty = new List<string>();
+		private readonly List<string> planetOrbitalPeriodLowerUncertainty = new List<string>();
+		private readonly List<string> planetOrbitalPeriodLimitFlag = new List<string>();
+		private readonly List<string> planetSemiMajorAxis = new List<string>();
+		private readonly List<string> planetSemiMajorAxisUpperUncertainty = new List<string>();
+		private readonly List<string> planetSemiMajorAxisLowerUncertainty = new List<string>();
+		private readonly List<string> planetSemiMajorAxisLimitFlag = new List<string>();
+		private readonly List<string> planetNumericEccentricity = new List<string>();
+		private readonly List<string> planetNumericEccentricityUpperUncertainty = new List<string>();
+		private readonly List<string> planetNumericEccentricityUncertainty = new List<string>();
+		private readonly List<string> planetNumericEccentricityLimitFlag = new List<string>();
+		private readonly List<string> planetInclination = new List<string>();
+		private readonly List<string> planetInclinationUpperUncertainty = new List<string>();
+		private readonly List<string> planetInclinationLowerUncertainty = new List<string>();
+		private readonly List<string> planetInclinationLimitFlag = new List<string>();
+		private readonly List<string> planetPotentialMassInJupiter = new List<string>();
+		private readonly List<string> planetPotentialMassInJupiterUpperUncertainty = new List<string>();
+		private readonly List<string> planetPotentialMassInJupiterLowerUncertainty = new List<string>();
+		private readonly List<string> planetPotentialMassInJupiterLimitFlag = new List<string>();
+		private readonly List<string> planetPotentialMassProvenance = new List<string>();
+		private readonly List<string> planetRadiusInJupiter = new List<string>();
+		private readonly List<string> planetRadiusInJupiterUpperUncertainty = new List<string>();
+		private readonly List<string> planetRadiusInJupiterLowerUncertainty = new List<string>();
+		private readonly List<string> planetRadiusInJupiterLimitFlag = new List<string>();
+		private readonly List<string> planetDensity = new List<string>();
+		private readonly List<string> planetDensityUpperUncertainty = new List<string>();
+		private readonly List<string> planetDensityLowerUncertainty = new List<string>();
+		private readonly List<string> planetDensityLimitFlag = new List<string>();
+		private readonly List<string> planetTtvFlag = new List<string>();
+		private readonly List<string> planetKeplerFieldFlag = new List<string>();
+		private readonly List<string> planetK2MissionFlag = new List<string>();
+		private readonly List<string> planetNumberOfNotes = new List<string>();
+		private readonly List<string> rectascension = new List<string>();
+		private readonly List<string> rectascensionAsString = new List<string>();
+		private readonly List<string> declination = new List<string>();
+		private readonly List<string> declinationAsString = new List<string>();
+		private readonly List<string> starDistance = new List<string>();
+		private readonly List<string> starDistanceUpperUncertainty = new List<string>();
+		private readonly List<string> starDistanceLowerUncertainty = new List<string>();
+		private readonly List<string> starDistanceLimitFlag = new List<string>();
+		private readonly List<string> starOpticalMagnitude = new List<string>();
+		private readonly List<string> starOpticalMagnitudeUncertainty = new List<string>();
+		private readonly List<string> starOpticalMagnitudeLimitFlag = new List<string>();
+		private readonly List<string> starOpticalMagnitudeBand = new List<string>();
+		private readonly List<string> gaiaGBand = new List<string>();
+		private readonly List<string> gaiaGBandUncertainty = new List<string>();
+		private readonly List<string> gaiaGBandLimitFlag = new List<string>();
+		private readonly List<string> starEffectiveTemperature = new List<string>();
+		private readonly List<string> starEffectiveTemperatureUpperUncertainty = new List<string>();
+		private readonly List<string> starEffectiveTemperatureLowerUncertainty = new List<string>();
+		private readonly List<string> starEffectiveTemperatureLimitFlag = new List<string>();
+		private readonly List<string> starMass = new List<string>();
+		private readonly List<string> starMassUpperUncertainty = new List<string>();
+		private readonly List<string> starMassLowerUncertainty = new List<string>();
+		private readonly List<string> starMassLimitFlag = new List<string>();
+		private readonly List<string> starRadius = new List<string>();
+		private readonly List<string> starRadiusUpperUncertainty = new List<string>();
+		private readonly List<string> starRadiusLowerUncertainty = new List<string>();
+		private readonly List<string> starRadiusLimitFlag = new List<string>();
+		private readonly List<string> dateLastUpdate = new List<string>();
+		private readonly List<string> planetTransitFlag = new List<string>();
+		private readonly List<string> planetRadialVelocityFlag = new List<string>();
+		private readonly List<string> planetImagingFlag = new List<string>();
+		private readonly List<string> planetAstrometryFlag = new List<string>();
+		private readonly List<string> planetOrbitalModulationFlag = new List<string>();
+		private readonly List<string> planetCircumbinaryFlag = new List<string>();
+		private readonly List<string> planetCalculatedAngularSeparation = new List<string>();
+		private readonly List<string> planetCalculatedAngularSeparationUpperUncertainty = new List<string>();
+		private readonly List<string> planetCalculatedAngularSeparationLowerUncertainty = new List<string>();
+		private readonly List<string> planetTimeOfPeriastron = new List<string>();
+		private readonly List<string> planetTimeOfPeriastronUpperUncertainty = new List<string>();
+		private readonly List<string> planetTimeOfPeriastronLowerUncertainty = new List<string>();
+		private readonly List<string> planetTimeOfPeriastronLimitFlag = new List<string>();
+		private readonly List<string> planetLongitudeOfPeriastron = new List<string>();
+		private readonly List<string> planetLongitudeOfPeriastronUpperUncertainty = new List<string>();
+		private readonly List<string> planetLongitudeOfPeriastronLowerUncertainty = new List<string>();
+		private readonly List<string> planetLongitudeOfPeriastronLimitFlag = new List<string>();
+		private readonly List<string> planetRadialVelocityAmplitude = new List<string>();
+		private readonly List<string> planetRadialVelocityAmplitudeUpperUncertainty = new List<string>();
+		private readonly List<string> planetRadialVelocityAmplitudeLowerUncertainty = new List<string>();
+		private readonly List<string> planetRadialVelocityAmplitudeLimitFlag = new List<string>();
+		private readonly List<string> planetEquilibriumTemperature = new List<string>();
+		private readonly List<string> planetEquilibriumTemperatureUpperUncertainty = new List<string>();
+		private readonly List<string> planetEquilibriumTemperatureLowerUncertainty = new List<string>();
+		private readonly List<string> planetEquilibriumTemperatureLimitFlag = new List<string>();
+		private readonly List<string> planetInsolationFlux = new List<string>();
+		private readonly List<string> planetInsolationFluxUpperUncertainty = new List<string>();
+		private readonly List<string> planetInsolationFluxLowerUncertainty = new List<string>();
+		private readonly List<string> planetInsolationFluxLimitFlag = new List<string>();
+		private readonly List<string> planetMassInJupiter = new List<string>();
+		private readonly List<string> planetMassInJupiterUpperUncertainty = new List<string>();
+		private readonly List<string> planetMassInJupiterLowerUncertainty = new List<string>();
+		private readonly List<string> planetMassInJupiterLimitFlag = new List<string>();
+		private readonly List<string> planetMsiniInJupiter = new List<string>();
+		private readonly List<string> planetMsiniInJupiterUpperUncertainty = new List<string>();
+		private readonly List<string> planetMsiniInJupiterLowerUncertainty = new List<string>();
+		private readonly List<string> planetMsiniInJupiterLimitFlag = new List<string>();
+		private readonly List<string> planetMassInEarth = new List<string>();
+		private readonly List<string> planetMassInEarthUpperUncertainty = new List<string>();
+		private readonly List<string> planetMassInEarthLowerUncertainty = new List<string>();
+		private readonly List<string> planetMassInEarthLimitFlag = new List<string>();
+		private readonly List<string> planetMsiniInEarth = new List<string>();
+		private readonly List<string> planetMsiniInEarthUpperUncertainty = new List<string>();
+		private readonly List<string> planetMsiniInEarthLowerUncertainty = new List<string>();
+		private readonly List<string> planetMsiniInEarthLimitFlag = new List<string>();
+		private readonly List<string> planetPotentialMassInEarth = new List<string>();
+		private readonly List<string> planetPotentialMassInEarthUpperUncertainty = new List<string>();
+		private readonly List<string> planetPotentialMassInEarthLowerUncertainty = new List<string>();
+		private readonly List<string> planetPotentialMassInEarthLimitFlag = new List<string>();
+		private readonly List<string> planetRadiusInEarth = new List<string>();
+		private readonly List<string> planetRadiusInEarthUpperUncertainty = new List<string>();
+		private readonly List<string> planetRadiusInEarthLowerUncertainty = new List<string>();
+		private readonly List<string> planetRadiusInEarthLimitFlag = new List<string>();
+		private readonly List<string> planetRadiusInSun = new List<string>();
+		private readonly List<string> planetRadiusInSunUpperUncertainty = new List<string>();
+		private readonly List<string> planetRadiusInSunLowerUncertainty = new List<string>();
+		private readonly List<string> planetRadiusInSunLimitFlag = new List<string>();
+		private readonly List<string> planetTransitDepth = new List<string>();
+		private readonly List<string> planetTransitDepthUpperUncertainty = new List<string>();
+		private readonly List<string> planetTransitDepthLowerUncertainty = new List<string>();
+		private readonly List<string> planetTransitDepthLimitFlag = new List<string>();
+		private readonly List<string> planetTransitDuration = new List<string>();
+		private readonly List<string> planetTransitDurationUpperUncertainty = new List<string>();
+		private readonly List<string> planetTransitDurationLowerUncertainty = new List<string>();
+		private readonly List<string> planetTransitDurationLimitFlag = new List<string>();
+		private readonly List<string> planetTransitMidpoint = new List<string>();
+		private readonly List<string> planetTransitMidpointUpperUncertainty = new List<string>();
+		private readonly List<string> planetTransitMidpointLowerUncertainty = new List<string>();
+		private readonly List<string> planetTransitMidpointLimitFlag = new List<string>();
+		private readonly List<string> planetTimeSystemReference = new List<string>();
+		private readonly List<string> planetImpactParameter = new List<string>();
+		private readonly List<string> planetImpactParameterUpperUncertainty = new List<string>();
+		private readonly List<string> planetImpactParameterLowerUncertainty = new List<string>();
+		private readonly List<string> planetImpactParameterLimitFlag = new List<string>();
+		private readonly List<string> planetOccultationDepth = new List<string>();
+		private readonly List<string> planetOccultationDepthUpperUncertainty = new List<string>();
+		private readonly List<string> planetOccultationDepthLowerUncertainty = new List<string>();
+		private readonly List<string> planetOccultationDepthLimitFlag = new List<string>();
+		private readonly List<string> planetRatioOfDistanceToStellarRadius = new List<string>();
+		private readonly List<string> planetRatioOfDistanceToStellarRadiusUpperUncertainty = new List<string>();
+		private readonly List<string> planetRatioOfDistanceToStellarRadiusLowerUncertainty = new List<string>();
+		private readonly List<string> planetRatioOfDistanceToStellarRadiusLimitFlag = new List<string>();
+		private readonly List<string> planetRatioOfPlanetToStellarRadius = new List<string>();
+		private readonly List<string> planetRatioOfPlanetToStellarRadiusUpperUncertainty = new List<string>();
+		private readonly List<string> planetRatioOfPlanetToStellarRadiusLowerUncertainty = new List<string>();
+		private readonly List<string> planetRatioOfPlanetToStellarRadiusLimitFlag = new List<string>();
+		private readonly List<string> planetDefaultReference = new List<string>();
+		private readonly List<string> planetYearOfDiscovery = new List<string>();
+		private readonly List<string> planetDiscoveryReference = new List<string>();
+		private readonly List<string> planetDiscoveryLocale = new List<string>();
+		private readonly List<string> planetDiscoveryFacility = new List<string>();
+		private readonly List<string> planetDiscoveryTelescope = new List<string>();
+		private readonly List<string> planeDiscoveryInstrument = new List<string>();
+		private readonly List<string> planetStatus = new List<string>();
+		private readonly List<string> planetNumberOfMoonsInSystem = new List<string>();
+		private readonly List<string> planetNumberOfStellarAndPlanetParameters = new List<string>();
+		private readonly List<string> planetNumberOfStellarAndPlanetReferences = new List<string>();
+		private readonly List<string> planetLinkToExoplanetEncyclopaedia = new List<string>();
+		private readonly List<string> planetLinkToExoplanetDataExplorer = new List<string>();
+		private readonly List<string> planetPublicationDate = new List<string>();
+		private readonly List<string> hdName = new List<string>();
+		private readonly List<string> hipName = new List<string>();
+		private readonly List<string> starRectascension = new List<string>();
+		private readonly List<string> starGalacticLongitude = new List<string>();
+		private readonly List<string> starGalacticLatitude = new List<string>();
+		private readonly List<string> starEclipticLongitude = new List<string>();
+		private readonly List<string> starEclipticLatitude = new List<string>();
+		private readonly List<string> starParallax = new List<string>();
+		private readonly List<string> starParallaxUpperUncertainty = new List<string>();
+		private readonly List<string> starParallaxLowerUncertainty = new List<string>();
+		private readonly List<string> starParallaxLimitFlag = new List<string>();
+		private readonly List<string> gaiaParallax = new List<string>();
+		private readonly List<string> gaiaParallaxUpperUncertainty = new List<string>();
+		private readonly List<string> gaiaParallaxLowerUncertainty = new List<string>();
+		private readonly List<string> gaiaParallaxLimitFlag = new List<string>();
+		private readonly List<string> gaiaDistance = new List<string>();
+		private readonly List<string> gaiaDistanceUpperUncertainty = new List<string>();
+		private readonly List<string> gaiaDistanceLowerUncertainty = new List<string>();
+		private readonly List<string> gaiaDistanceLimitFlag = new List<string>();
+		private readonly List<string> starProperMotionByRectascension = new List<string>();
+		private readonly List<string> starProperMotionByRectascensionUncertainty = new List<string>();
+		private readonly List<string> starProperMotionByRectascensionLimitFlag = new List<string>();
+		private readonly List<string> starProperMotionByDeclination = new List<string>();
+		private readonly List<string> starProperMotionByDeclinationUncertainty = new List<string>();
+		private readonly List<string> starProperMotionByDeclinationLimitFlag = new List<string>();
+		private readonly List<string> starTotalProperMotion = new List<string>();
+		private readonly List<string> starTotalProperMotionUncertainty = new List<string>();
+		private readonly List<string> starTotalProperMotionLimitFlag = new List<string>();
+		private readonly List<string> gaiaProperMotionByRectascension = new List<string>();
+		private readonly List<string> gaiaProperMotionByRectascensionUncertainty = new List<string>();
+		private readonly List<string> gaiaProperMotionByRectascensionLimitFlag = new List<string>();
+		private readonly List<string> gaiaProperMotionByDeclination = new List<string>();
+		private readonly List<string> gaiaProperMotionByDeclinationUncertainty = new List<string>();
+		private readonly List<string> gaiaProperMotionByDeclinationLimitFlag = new List<string>();
+		private readonly List<string> gaiaTotalProperMotion = new List<string>();
+		private readonly List<string> gaiaTotalProperMotionUncertainty = new List<string>();
+		private readonly List<string> gaiaTotalProperMotionLimitFlag = new List<string>();
+		private readonly List<string> starRadialVelocity = new List<string>();
+		private readonly List<string> starRadialVelocityUpperUncertainty = new List<string>();
+		private readonly List<string> starRadialVelocityLowerUncertainty = new List<string>();
+		private readonly List<string> starRadialVelocityLimitFlag = new List<string>();
+		private readonly List<string> starSpectralType = new List<string>();
+		private readonly List<string> starSpectralTypeAsString = new List<string>();
+		private readonly List<string> starSpectralTypeUncertainty = new List<string>();
+		private readonly List<string> starSpectralTypeLimitFlag = new List<string>();
+		private readonly List<string> starSurfaceGravity = new List<string>();
+		private readonly List<string> starSurfaceGravityUpperUncertainty = new List<string>();
+		private readonly List<string> starSurfaceGravityLowerUncertainty = new List<string>();
+		private readonly List<string> starSurfaceGravityLimitFlag = new List<string>();
+		private readonly List<string> starLuminosity = new List<string>();
+		private readonly List<string> starLuminosityUpperUncertainty = new List<string>();
+		private readonly List<string> starLuminosityLowerUncertainty = new List<string>();
+		private readonly List<string> starLuminosityLimitFlag = new List<string>();
+		private readonly List<string> starDensity = new List<string>();
+		private readonly List<string> starDensityUpperUncertainty = new List<string>();
+		private readonly List<string> starDensityLowerUncertainty = new List<string>();
+		private readonly List<string> starDensityLimitFlag = new List<string>();
+		private readonly List<string> starMetalicity = new List<string>();
+		private readonly List<string> starMetalicityUpperUncertainty = new List<string>();
+		private readonly List<string> starMetalicityLowerUncertainty = new List<string>();
+		private readonly List<string> starMetalicityLimitFlag = new List<string>();
+		private readonly List<string> starMetalicityRatio = new List<string>();
+		private readonly List<string> starAge = new List<string>();
+		private readonly List<string> starAgeUpperUncertainty = new List<string>();
+		private readonly List<string> starAgeLowerUncertainty = new List<string>();
+		private readonly List<string> starAgeLimitFlag = new List<string>();
+		private readonly List<string> starRotationalVelocityVsini = new List<string>();
+		private readonly List<string> starRotationalVelocityVsiniUpperUncertainty = new List<string>();
+		private readonly List<string> starRotationalVelocityVsiniLowerUncertainty = new List<string>();
+		private readonly List<string> starRotationalVelocityVsiniLimitFlag = new List<string>();
+		private readonly List<string> starActivitySindex = new List<string>();
+		private readonly List<string> starActivitySindexUncertainty = new List<string>();
+		private readonly List<string> starActivitySindexLimitFlag = new List<string>();
+		private readonly List<string> starActivityLog = new List<string>();
+		private readonly List<string> starActivityLogUncertainty = new List<string>();
+		private readonly List<string> starActivityLogLimitFlag = new List<string>();
+		private readonly List<string> starXrayActivityLog = new List<string>();
+		private readonly List<string> starXrayActivityLogUncertainty = new List<string>();
+		private readonly List<string> starXrayActivityLogLimitFlag = new List<string>();
+		private readonly List<string> swaspIdentifier = new List<string>();
+		private readonly List<string> starNumerOfTimeSeries = new List<string>();
+		private readonly List<string> starNumerOfPlanetTransitLightCurves = new List<string>();
+		private readonly List<string> starNumerOfGeneralLightCurves = new List<string>();
+		private readonly List<string> starNumerOfRadialVelocityTimeSeries = new List<string>();
+		private readonly List<string> starNumerOfAmateurLightCurves = new List<string>();
+		private readonly List<string> starNumerOfImages = new List<string>();
+		private readonly List<string> starNumerOfSpectra = new List<string>();
+		private readonly List<string> starUBand = new List<string>();
+		private readonly List<string> starUBandUncertainty = new List<string>();
+		private readonly List<string> starUBandLimitFlag = new List<string>();
+		private readonly List<string> starVBand = new List<string>();
+		private readonly List<string> starVBandUncertainty = new List<string>();
+		private readonly List<string> starVBandLimitFlag = new List<string>();
+		private readonly List<string> starBBand = new List<string>();
+		private readonly List<string> starBBandUncertainty = new List<string>();
+		private readonly List<string> starBBandLimitFlag = new List<string>();
+		private readonly List<string> starRBand = new List<string>();
+		private readonly List<string> starRBandUncertainty = new List<string>();
+		private readonly List<string> starRBandLimitFlag = new List<string>();
+		private readonly List<string> starIBand = new List<string>();
+		private readonly List<string> starIBandUncertainty = new List<string>();
+		private readonly List<string> starIBandLimitFlag = new List<string>();
+		private readonly List<string> starJBand = new List<string>();
+		private readonly List<string> starJBandUncertainty = new List<string>();
+		private readonly List<string> starJBandLimitFlag = new List<string>();
+		private readonly List<string> starHBand = new List<string>();
+		private readonly List<string> starHBandUncertainty = new List<string>();
+		private readonly List<string> starHBandLimitFlag = new List<string>();
+		private readonly List<string> starKsBand = new List<string>();
+		private readonly List<string> starksBandUncertainty = new List<string>();
+		private readonly List<string> starKsBandLimitFlag = new List<string>();
+		private readonly List<string> starWise34um = new List<string>();
+		private readonly List<string> starWise34umUncertainty = new List<string>();
+		private readonly List<string> starWise34umLimitFlag = new List<string>();
+		private readonly List<string> starWise46um = new List<string>();
+		private readonly List<string> starWise46umUncertainty = new List<string>();
+		private readonly List<string> starWise46umLimitFlag = new List<string>();
+		private readonly List<string> starWise12um = new List<string>();
+		private readonly List<string> starWise12umUncertainty = new List<string>();
+		private readonly List<string> starWise12umLimitFlag = new List<string>();
+		private readonly List<string> starWise22um = new List<string>();
+		private readonly List<string> starWise22umUncertainty = new List<string>();
+		private readonly List<string> starWise22umLimitFlag = new List<string>();
+		private readonly List<string> starIrac36um = new List<string>();
+		private readonly List<string> starIrac36umUncertainty = new List<string>();
+		private readonly List<string> starIrac36umLimitFlag = new List<string>();
+		private readonly List<string> starIrac45um = new List<string>();
+		private readonly List<string> starIrac45umUncertainty = new List<string>();
+		private readonly List<string> starIrac45umLimitFlag = new List<string>();
+		private readonly List<string> starIrac58um = new List<string>();
+		private readonly List<string> starIrac58umUncertainty = new List<string>();
+		private readonly List<string> starIrac58umLimitFlag = new List<string>();
+		private readonly List<string> starIrac80um = new List<string>();
+		private readonly List<string> starIrac80umUncertainty = new List<string>();
+		private readonly List<string> starIrac80umLimitFlag = new List<string>();
+		private readonly List<string> starMips24um = new List<string>();
+		private readonly List<string> starMips24umUncertainty = new List<string>();
+		private readonly List<string> starMips24umLimitFlag = new List<string>();
+		private readonly List<string> starMips70um = new List<string>();
+		private readonly List<string> starMips70umUncertainty = new List<string>();
+		private readonly List<string> starMips70umLimitFlag = new List<string>();
+		private readonly List<string> starMips160um = new List<string>();
+		private readonly List<string> starMips160umUncertainty = new List<string>();
+		private readonly List<string> starMips160umLimitFlag = new List<string>();
+		private readonly List<string> starIras12um = new List<string>();
+		private readonly List<string> starIras12umUncertainty = new List<string>();
+		private readonly List<string> starIras12umLimitFlag = new List<string>();
+		private readonly List<string> starIras25um = new List<string>();
+		private readonly List<string> starIras25umUncertainty = new List<string>();
+		private readonly List<string> starIras25umLimitFlag = new List<string>();
+		private readonly List<string> starIras60um = new List<string>();
+		private readonly List<string> starIras60umUncertainty = new List<string>();
+		private readonly List<string> starIras60umLimitFlag = new List<string>();
+		private readonly List<string> starIras100um = new List<string>();
+		private readonly List<string> starIras100umUncertainty = new List<string>();
+		private readonly List<string> starIras100umLimitFlag = new List<string>();
+		private readonly List<string> starNumberOfPhotometryMeasurements = new List<string>();
+		private readonly List<string> starUbColorIndex = new List<string>();
+		private readonly List<string> starUbColorIndexUncertainty = new List<string>();
+		private readonly List<string> starUbColorIndexLimitFlag = new List<string>();
+		private readonly List<string> starBvColorIndex = new List<string>();
+		private readonly List<string> starBvColorIndexUncertainty = new List<string>();
+		private readonly List<string> starBvColorIndexLimitFlag = new List<string>();
+		private readonly List<string> starViColorIndex = new List<string>();
+		private readonly List<string> starViColorIndexUncertainty = new List<string>();
+		private readonly List<string> starViColorIndexLimitFlag = new List<string>();
+		private readonly List<string> starVrColorIndex = new List<string>();
+		private readonly List<string> starVrColorIndexUncertainty = new List<string>();
+		private readonly List<string> starVrColorIndexLimitFlag = new List<string>();
+		private readonly List<string> starJhColorIndex = new List<string>();
+		private readonly List<string> starJhColorIndexUncertainty = new List<string>();
+		private readonly List<string> starJhColorIndexLimitFlag = new List<string>();
+		private readonly List<string> starHksColorIndex = new List<string>();
+		private readonly List<string> starHksColorIndexUncertainty = new List<string>();
+		private readonly List<string> starHksColorIndexLimitFlag = new List<string>();
+		private readonly List<string> starJksColorIndex = new List<string>();
+		private readonly List<string> starJksColorIndexUncertainty = new List<string>();
+		private readonly List<string> starJksColorIndexLimitFlag = new List<string>();
+		private readonly List<string> starByColorIndex = new List<string>();
+		private readonly List<string> starByColorIndexUncertainty = new List<string>();
+		private readonly List<string> starByColorIndexLimitFlag = new List<string>();
+		private readonly List<string> starM1ColorIndex = new List<string>();
+		private readonly List<string> starM1ColorIndexUncertainty = new List<string>();
+		private readonly List<string> starM1ColorIndexLimitFlag = new List<string>();
+		private readonly List<string> starC1ColorIndex = new List<string>();
+		private readonly List<string> starC1ColorIndexUncertainty = new List<string>();
+		private readonly List<string> starC1ColorIndexLimitFlag = new List<string>();
+		private readonly List<string> starNumberOfColorMeasurements = new List<string>();
 
 		private void ClearAllLists()
 		{
@@ -832,110 +759,89 @@ namespace EXO_DB
 			kryptonButtonLoadExternalDatabase.Enabled = true;
 		}
 
-		private void SetStatusbar(object sender, EventArgs e)
+		private void SetStatusbar_Enter(object sender, EventArgs e)
 		{
-			if (sender is TextBox)
+			if (sender is Control control)
 			{
-				toolStripStatusLabel.Text = ((TextBox)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = control.AccessibleDescription;
 			}
-			else if (sender is Button)
+			else if (sender is ToolStripButton toolStripButton)
 			{
-				toolStripStatusLabel.Text = ((Button)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripButton.AccessibleDescription;
 			}
-			else if (sender is RadioButton)
+			else if (sender is ToolStripMenuItem toolStripMenuItem)
 			{
-				toolStripStatusLabel.Text = ((RadioButton)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripMenuItem.AccessibleDescription;
 			}
-			else if (sender is DateTimePicker)
+			else if (sender is ToolStripLabel toolStripLabel)
 			{
-				toolStripStatusLabel.Text = ((DateTimePicker)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripLabel.AccessibleDescription;
 			}
-			else if (sender is Label)
+			else if (sender is ToolStripComboBox toolStripComboBox)
 			{
-				toolStripStatusLabel.Text = ((Label)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripComboBox.AccessibleDescription;
 			}
-			else if (sender is PictureBox)
+			else if (sender is ToolStripDropDown toolStripDropDown)
 			{
-				toolStripStatusLabel.Text = ((PictureBox)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripDropDown.AccessibleDescription;
 			}
-			else if (sender is ToolStripButton)
+			else if (sender is ToolStripDropDownButton toolStripDropDownButton)
 			{
-				toolStripStatusLabel.Text = ((ToolStripButton)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripDropDownButton.AccessibleDescription;
 			}
-			else if (sender is ToolStripMenuItem)
+			else if (sender is ToolStripDropDownItem toolStripDropDownItem)
 			{
-				toolStripStatusLabel.Text = ((ToolStripMenuItem)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripDropDownItem.AccessibleDescription;
 			}
-			else if (sender is ToolStripLabel)
+			else if (sender is ToolStripDropDownMenu toolStripDropDownMenu)
 			{
-				toolStripStatusLabel.Text = ((ToolStripLabel)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripDropDownMenu.AccessibleDescription;
 			}
-			else if (sender is ToolStripComboBox)
+			else if (sender is ToolStripProgressBar toolStripProgressBar)
 			{
-				toolStripStatusLabel.Text = ((ToolStripComboBox)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripProgressBar.AccessibleDescription;
 			}
-			else if (sender is ToolStripDropDown)
+			else if (sender is ToolStripSplitButton toolStripSplitButton)
 			{
-				toolStripStatusLabel.Text = ((ToolStripDropDown)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripSplitButton.AccessibleDescription;
 			}
-			else if (sender is ToolStripDropDownButton)
+			else if (sender is ToolStripSeparator toolStripSeparator)
 			{
-				toolStripStatusLabel.Text = ((ToolStripDropDownButton)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripSeparator.AccessibleDescription;
 			}
-			else if (sender is ToolStripDropDownItem)
+			else if (sender is ToolStripStatusLabel toolStripStatusLabel2)
 			{
-				toolStripStatusLabel.Text = ((ToolStripDropDownItem)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripStatusLabel2.AccessibleDescription;
 			}
-			else if (sender is ToolStripDropDownMenu)
+			else if (sender is ToolStripTextBox toolStripTextBox)
 			{
-				toolStripStatusLabel.Text = ((ToolStripDropDownMenu)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = toolStripTextBox.AccessibleDescription;
 			}
-			else if (sender is ToolStripProgressBar)
+			else if (sender is KryptonButton kryptonButton)
 			{
-				toolStripStatusLabel.Text = ((ToolStripProgressBar)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = kryptonButton.AccessibleDescription;
 			}
-			else if (sender is ToolStripSplitButton)
+			else if (sender is KryptonPage kryptonPage)
 			{
-				toolStripStatusLabel.Text = ((ToolStripSplitButton)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = kryptonPage.AccessibleDescription;
 			}
-			else if (sender is ToolStripSeparator)
+			else if (sender is KryptonLabel kryptonLabel)
 			{
-				toolStripStatusLabel.Text = ((ToolStripSeparator)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = kryptonLabel.AccessibleDescription;
 			}
-			else if (sender is ToolStripStatusLabel)
+			else if (sender is KryptonLinkLabel kryptonLinkLabel)
 			{
-				toolStripStatusLabel.Text = ((ToolStripStatusLabel)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = kryptonLinkLabel.AccessibleDescription;
 			}
-			else if (sender is ToolStripTextBox)
+			else if (sender is KryptonRichTextBox kryptonRichTextBox)
 			{
-				toolStripStatusLabel.Text = ((ToolStripTextBox)sender).AccessibleDescription;
-			}
-			else if (sender is KryptonButton)
-			{
-				toolStripStatusLabel.Text = ((KryptonButton)sender).AccessibleDescription;
-			}
-			else if (sender is KryptonPage)
-			{
-				toolStripStatusLabel.Text = ((KryptonButton)sender).AccessibleDescription;
-			}
-			else if (sender is KryptonLabel)
-			{
-				toolStripStatusLabel.Text = ((KryptonLabel)sender).AccessibleDescription;
-			}
-			else if (sender is KryptonLinkLabel)
-			{
-				toolStripStatusLabel.Text = ((KryptonLinkLabel)sender).AccessibleDescription;
-			}
-			else if (sender is KryptonRichTextBox)
-			{
-				toolStripStatusLabel.Text = ((KryptonRichTextBox)sender).AccessibleDescription;
+				toolStripStatusLabel.Text = kryptonRichTextBox.AccessibleDescription;
 			}
 		}
 
-		private void ClearStatusbar()
-		{
-			toolStripStatusLabel.Text = string.Empty;
-		}
+		private void ClearStatusbar() => toolStripStatusLabel.Text = string.Empty;
+
+		private void ClearStatusbar_Leave(object sender, EventArgs e) => ClearStatusbar();
 
 		private void LoadDatabase(Stream stream)
 		{
@@ -946,7 +852,6 @@ namespace EXO_DB
 			{
 				maxColumns = (uint)fieldCount;
 			}
-
 			string[] headers = csv.GetFieldHeaders();
 			while (csv.ReadNextRecord())
 			{
@@ -1017,7 +922,7 @@ namespace EXO_DB
 						case "st_masserr1": starMassUpperUncertainty.Add(item: csv[i]); break;
 						case "st_masserr2": starMassLowerUncertainty.Add(item: csv[i]); break;
 						case "st_masslim": starMassLimitFlag.Add(item: csv[i]); break;
-						case "st_rad": starMassLimitFlag.Add(item: csv[i]); break;
+						case "st_rad": starRadius.Add(item: csv[i]); break;
 						case "st_raderr1": starRadiusUpperUncertainty.Add(item: csv[i]); break;
 						case "st_raderr2": starRadiusLowerUncertainty.Add(item: csv[i]); break;
 						case "st_radlim": starRadiusLimitFlag.Add(item: csv[i]); break;
@@ -1319,13 +1224,13 @@ namespace EXO_DB
 
 		private void OpenInformationForm()
 		{
-			new InfoForm().ShowDialog();
+			using (InfoForm infoForm = new InfoForm())
+			{
+				infoForm.ShowDialog();
+			}
 		}
 
-		public MainForm()
-		{
-			InitializeComponent();
-		}
+		public MainForm() => InitializeComponent();
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
@@ -1342,55 +1247,25 @@ namespace EXO_DB
 			OpenInformationForm();
 		}
 
-		private void ToolStripMenuItemExit_Click(object sender, EventArgs e)
-		{
-			Close();
-		}
+		private void ToolStripMenuItemExit_Click(object sender, EventArgs e) => Close();
 
-		private void ToolStripMenuItemInfo_Click(object sender, EventArgs e)
-		{
-			OpenInformationForm();
-		}
+		private void ToolStripMenuItemInfo_Click(object sender, EventArgs e) => OpenInformationForm();
 
-		private void ToolStripButtonLoadInternalDatabase_Click(object sender, EventArgs e)
-		{
-			KryptonButtonLoadInternalDatabase_Click(sender: sender, e: e);
-		}
+		private void ToolStripButtonLoadInternalDatabase_Click(object sender, EventArgs e) => KryptonButtonLoadInternalDatabase_Click(sender: sender, e: e);
 
-		private void ToolStripButtonLoadOnlineDatabase_Click(object sender, EventArgs e)
-		{
-			KryptonButtonLoadOnlineDatabase_Click(sender: sender, e: e);
-		}
+		private void ToolStripButtonLoadOnlineDatabase_Click(object sender, EventArgs e) => KryptonButtonLoadOnlineDatabase_Click(sender: sender, e: e);
 
-		private void ToolStripButtonLoadExternalDatabase_Click(object sender, EventArgs e)
-		{
-			KryptonButtonLoadExternalDatabase_Click(sender: sender, e: e);
-		}
+		private void ToolStripButtonLoadExternalDatabase_Click(object sender, EventArgs e) => KryptonButtonLoadExternalDatabase_Click(sender: sender, e: e);
 
-		private void ToolStripMenuItemLoadInternalDatabase_Click(object sender, EventArgs e)
-		{
-			KryptonButtonLoadInternalDatabase_Click(sender: sender, e: e);
-		}
+		private void ToolStripMenuItemLoadInternalDatabase_Click(object sender, EventArgs e) => KryptonButtonLoadInternalDatabase_Click(sender: sender, e: e);
 
-		private void ToolStripMenuItemLoadOnlineDatabase_Click(object sender, EventArgs e)
-		{
-			KryptonButtonLoadOnlineDatabase_Click(sender: sender, e: e);
-		}
+		private void ToolStripMenuItemLoadOnlineDatabase_Click(object sender, EventArgs e) => KryptonButtonLoadOnlineDatabase_Click(sender: sender, e: e);
 
-		private void ToolStripMenuItemLoadExternalDatabase_Click(object sender, EventArgs e)
-		{
-			KryptonButtonLoadExternalDatabase_Click(sender: sender, e: e);
-		}
+		private void ToolStripMenuItemLoadExternalDatabase_Click(object sender, EventArgs e) => KryptonButtonLoadExternalDatabase_Click(sender: sender, e: e);
 
-		private void ToolStripMenuItemOpenHomepage_Click(object sender, EventArgs e)
-		{
-			System.Diagnostics.Process.Start(fileName: "https://exo-db.de");
-		}
+		private void ToolStripMenuItemOpenHomepage_Click(object sender, EventArgs e) => Process.Start(fileName: "https://exo-db.de");
 
-		private void ToolStripMenuItemOpenGithub_Click(object sender, EventArgs e)
-		{
-			System.Diagnostics.Process.Start(fileName: "https://github.com/mjohne/EXO-DB");
-		}
+		private void ToolStripMenuItemOpenGithub_Click(object sender, EventArgs e) => Process.Start(fileName: "https://github.com/mjohne/EXO-DB");
 
 		private void KryptonButtonLoadInternalDatabase_Click(object sender, EventArgs e)
 		{
@@ -1399,8 +1274,7 @@ namespace EXO_DB
 			progressBarLoadingDatabase.Show();
 			progressBarLoadingDatabase.Style = ProgressBarStyle.Marquee;
 			kryptonWrapLabelStatusOfProgressingDatabase.Text = "Datenbank wird geladen...";
-			Assembly thisAssembly = Assembly.GetExecutingAssembly();
-			Stream resourceStream = thisAssembly.GetManifestResourceStream(name: "EXO_DB.exoplanets.csv");
+			Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(name: "EXO_DB.exoplanets.csv");
 			LoadDatabase(stream: resourceStream);
 			progressBarLoadingDatabase.Hide();
 			EnableAllControlsToLoadingDatabase();
@@ -1434,13 +1308,13 @@ namespace EXO_DB
 				progressBarLoadingDatabase.Style = ProgressBarStyle.Marquee;
 				kryptonWrapLabelStatusOfProgressingDatabase.Text = "Datenbank wird geladen...";
 
-				string uriNasaExoplanetArchiveExoplanetCsv = "https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&select=*";
-				webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(WebClient_DownloadFileCompleted);
+				const string uriNasaExoplanetArchiveExoplanetCsv = "https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&select=*";
+				webClient.DownloadFileCompleted += WebClient_DownloadFileCompleted;
 				webClient.DownloadFileAsync(address: new Uri(uriString: uriNasaExoplanetArchiveExoplanetCsv), fileName: "exoplanets.csv");
 			}
 		}
 
-		void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+		private void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
 			MessageBox.Show("File downloaded");
 			webClient.CancelAsync();
@@ -1475,262 +1349,6 @@ namespace EXO_DB
 
 		private void KryptonButtonSaveOnlineDatabase_Click(object sender, EventArgs e)
 		{
-		}
-
-		#endregion
-
-		#region Enter-Evenhandlers
-
-		private void KryptonButtonLoadInternalDatabase_Enter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void KryptonButtonLoadOnlineDatabase_Enter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void KryptonButtonLoadExternalDatabase_Enter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void KryptonButtonSaveInternalDatabase_Enter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void KryptonButtonSaveOnlineDatabase_Enter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		#endregion
-
-		#region MouseEnter-Eventhandlers
-
-		private void KryptonButtonLoadInternalDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void KryptonButtonLoadOnlineDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void KryptonButtonLoadExternalDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void KryptonButtonSaveInternalDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void KryptonButtonSaveOnlineDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripButtonLoadInternalDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripButtonLoadOnlineDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripButtonLoadExternalDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripButtonInformation_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripMenuItemFile_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripMenuItemLoadDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripMenuItemExit_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripMenuItemHelp_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripMenuItemInformation_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripMenuItemOpenHomepage_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripMenuItemOpenGithub_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripMenuItemLoadInternalDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripMenuItemLoadOnlineDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		private void ToolStripMenuItemLoadExternalDatabase_MouseEnter(object sender, EventArgs e)
-		{
-			SetStatusbar(sender: sender, e: e);
-		}
-
-		#endregion
-
-		#region Leave-Eventhandlers
-
-		private void KryptonButtonLoadInternalDatabase_Leave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void KryptonButtonLoadOnlineDatabase_Leave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void KryptonButtonLoadExternalDatabase_Leave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void KryptonButtonSaveInternalDatabase_Leave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void KryptonButtonSaveOnlineDatabase_Leave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		#endregion
-
-		#region MouseLeave-Eventhandlers
-
-		private void KryptonButtonLoadInternalDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void KryptonButtonLoadOnlineDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void KryptonButtonLoadExternalDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void KryptonButtonSaveInternalDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void KryptonButtonSaveOnlineDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripButtonLoadInternalDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripButtonLoadOnlineDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripButtonLoadExternalDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripButtonInformation_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripMenuItemFile_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripMenuItemLoadDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripMenuItemExit_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripMenuItemHelp_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripMenuItemInformation_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripMenuItemOpenHomepage_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripMenuItemOpenGithub_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripMenuItemLoadInternalDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripMenuItemLoadOnlineDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
-		}
-
-		private void ToolStripMenuItemLoadExternalDatabase_MouseLeave(object sender, EventArgs e)
-		{
-			ClearStatusbar();
 		}
 
 		#endregion
