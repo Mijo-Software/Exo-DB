@@ -1,2 +1,2 @@
 # EXO-DB
-Verwaltungsprogramm für entdeckte Exoplaneten
+Management software about discovered exoplanets
